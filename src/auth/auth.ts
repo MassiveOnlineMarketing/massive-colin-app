@@ -28,7 +28,7 @@ export const {
     }
   },
   callbacks: {
-    async signIn() {
+    async signIn({ user, account }) {
       return true;
     },
     async jwt({ token, account }) {

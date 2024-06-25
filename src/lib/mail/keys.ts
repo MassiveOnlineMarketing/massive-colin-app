@@ -27,8 +27,7 @@ export const sendKeysEmail = async (
   const keysHtml = keys.map(key => {
     return `
       <h3>Key: ${PRODUCTS[key.productId]?.name}</h3>
-      <p><b>Key 1</b>: ${key.key1}</p>
-      <p><b>Key 2</b>: ${key.key2}</p>
+      <p><b>Key 1</b>: ${key.key1} <b>Key 2</b>: ${key.key2}</p>
       <br>
     `
   }).join('')
@@ -67,8 +66,7 @@ export const sendKeysEmailWithAccount = async (
   const keysHtml = keys.map(key => {
     return `
       <h3>Key: ${PRODUCTS[key.productId]?.name}</h3>
-      <p><b>Key 1</b>: ${key.key1}</p>
-      <p><b>Key 2</b>: ${key.key2}</p>
+      <p><b>Key 1</b>: ${key.key1} <b>Key 2</b>: ${key.key2}</p>
       <br>
     `
   }).join('')

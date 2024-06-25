@@ -8,31 +8,31 @@ type ProductDictionary = {
 };
 
 export const PRODUCTS: ProductDictionary = {
-  'clxuqpzkq00006ovyrpi8311i': {
+  'clxurzyj50000ihe42jmujpmk': {
     'name': 'Krossbow',
     'imgUrl': '/gui/krossbow-gui.png'
   },
-  'clxuqqaq100016ovyw2kvs2f8': {
+  'clxus0z1l0001ihe4onhcwpkx': {
     'name': 'APM Live',
     'imgUrl': '/gui/amp-live-gui.png'
   },
-  'clxuqqgb800026ovy6248m2sx': {
+  "clxus2dsn0002ihe4zbpinpla": {
     'name': 'Octapus',
     'imgUrl': '/gui/octapus-gui.png'
   },
-  'clxuqqkky00036ovy5eofft70': {
+  'clxus2qwy0003ihe41dl7e0p8': {
     'name': 'Resonote',
     'imgUrl': '/gui/resonote-gui.png'
   },
-  'clxuqqq4w00046ovy9fzhgnu8': {
+  'clxus35ol0004ihe45m8bdfrt': {
     'name': 'Reeferb',
     'imgUrl': '/gui/reeferb-gui.png'
   },
-  'clxuqqx7600056ovy43toaahn': {
+  'clxus3geq0005ihe4ae0w8f91': {
     'name': "Stereo Pusher",
     'imgUrl': '/gui/stereo-pusher-gui.png'
   },
-  'clxuqr39300066ovy4k76ie03': {
+  'clxus3rmb0006ihe471svgv93': {
     'name': "Mono Pusher",
     'imgUrl': '/gui/mono-pusher-gui.png'
   }

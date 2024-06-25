@@ -18,15 +18,15 @@ enum UserRole {
 }
 
 model User {
-  id                    String                 @id @default(cuid())
-  name                  String?
-  email                 String?                @unique
-  image                 String?
-  password              String?
-  role                  UserRole               @default(USER)
-  accounts              Account[]
-  keys                  Key[]
-  Order                 Order[]
+  id       String    @id @default(cuid())
+  name     String?
+  email    String?   @unique
+  image    String?
+  password String?
+  role     UserRole  @default(USER)
+  accounts Account[]
+  keys     Key[]
+  Order    Order[]
 }
 
 model Account {
@@ -84,7 +84,7 @@ model Product {
 
 model Bundle {
   id       String          @id @default(cuid())
-  name     String
+  sku      String
   products ProductBundle[]
 }
 
@@ -111,10 +111,10 @@ model Key {
 }
 
 model Order {
-  id         String   @id @default(cuid())
-  oderNumber Int      
-  customerId String
-  customer   User     @relation(fields: [customerId], references: [id])
-  keys       Key[]
-  createdAt  DateTime @default(now())
+  id          String   @id @default(cuid())
+  orderNumber Int
+  customerId  String
+  customer    User     @relation(fields: [customerId], references: [id])
+  keys        Key[]
+  createdAt   DateTime @default(now())
 }
