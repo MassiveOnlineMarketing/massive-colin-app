@@ -2,6 +2,18 @@
 
 import { db } from '@/lib/db';
 
+
+export const getKeysPerProduct = async (productId: string) => {
+  const keys = await db.key.findMany({
+    where: {
+      productId: productId,
+    },
+  });
+
+  return keys;
+}
+
+
 export const insertNewProduct = async (sku: string) => {
   const newProduct = await db.product.create({
     data: {
@@ -36,3 +48,4 @@ export async function createProductBundle(productId: string) {
     console.error("Error creating ProductBundle:", error);
   }
 }
+

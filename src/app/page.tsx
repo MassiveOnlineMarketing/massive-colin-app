@@ -12,7 +12,7 @@ const inter = Inter({ subsets: ["latin"] });
 
 export default async function Home() {
   const session = await auth()
-  console.log('session: ', session)
+  // console.log('session: ', session)
 
   const user = await getUserByEmail(session?.user.email as string)
   const keys = user?.keys || []
@@ -21,8 +21,6 @@ export default async function Home() {
   for (let i = 0; i < numCards; i++) {
     cards.push({})
   }
-
-  console.log('home page user: ', user)
 
   
   function getProduct(productId: string) {

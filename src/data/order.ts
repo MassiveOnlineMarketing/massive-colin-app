@@ -3,7 +3,7 @@
 import { db } from "@/lib/db";
 import { Key, User } from "@prisma/client";
 
-interface Order {
+export interface OrderDTO {
   id: string;
   orderNumber: number;
   customerId: string;
@@ -12,12 +12,12 @@ interface Order {
   keys: Key[];
 }
 
-export const getAllOrders = async (): Promise<Order[]> => {
+export const getAllOrders = async (): Promise<OrderDTO[]> => {
   const orders = await db.order.findMany({
     include: {
       customer: true,
       keys: true
     }
   });
-  return orders as Order[];
+  return orders as OrderDTO[];
 }
