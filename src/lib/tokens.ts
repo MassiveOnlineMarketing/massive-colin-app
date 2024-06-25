@@ -52,13 +52,3 @@ export const generateVerificationToken = async (email: string) => {
   return verificationToken;
 };
 
-export const updateGoogleRefreshToken = async (id: string, refreshToken: string) => {
-  await db.user.update({
-    where: {
-      id,
-    },
-    data: {
-      refreshToken,
-    },
-  });
-};
