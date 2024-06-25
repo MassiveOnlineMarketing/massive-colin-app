@@ -5,7 +5,7 @@ import { Key, User } from "@prisma/client";
 
 interface Order {
   id: string;
-  oderNumber: number;
+  orderNumber: number;
   customerId: string;
   createdAt: Date;
   customer: User;
