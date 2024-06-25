@@ -1,0 +1,144 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* * Global */
+/* Primary */
+.primary-button{
+  background: 
+  radial-gradient(84.31% 84.31% at 50% 73.53%, rgba(255, 255, 255, 0.00) 76.66%, rgba(255, 255, 255, 0.15) 100%), linear-gradient(221deg, rgba(251, 201, 212, 0.40) -18.22%, rgba(251, 201, 212, 0.00) 34.14%), linear-gradient(180deg, #8D72FF 0%, #7857FF 57%);
+    
+    /* linear-gradient(180deg, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0.1) 100%) border-box, */
+}
+.primary-button:hover{
+  background: radial-gradient(84.31% 84.31% at 50% 73.53%, rgba(255, 255, 255, 0.00) 76.66%, rgba(255, 255, 255, 0.15) 100%), linear-gradient(221deg, rgba(251, 201, 212, 0.50) -18.22%, rgba(251, 201, 212, 0.00) 34.14%), linear-gradient(180deg, #967ffd 0%, #8061ff 57%);
+}
+.primary-button:before{
+  background: linear-gradient(180deg, rgba(255, 255, 255, 1) 0%, rgba(236, 181, 255, 0.75) 50%, rgba(236, 181, 255, 0.2) 100%);
+  opacity: 0.3;
+  padding: 1px;
+  
+  border-radius: 6.5px;
+  content: "";
+  inset: 1.5px;
+  -webkit-mask: linear-gradient(#fff 0 0) content-box,linear-gradient(#fff 0 0);
+  mask: linear-gradient(#fff 0 0) content-box,linear-gradient(#fff 0 0);
+  mask-composite: xor;
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
+  position: absolute;
+}
+/* Dark */
+/* not used in headings or buttons */
+.dark-border-gradient:before{
+  background: 
+    linear-gradient(180deg, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0.1) 100%) padding-box,
+    linear-gradient(180deg, rgba(255, 255, 255, 0.05) 0%, rgba(255, 255, 255, 0) 100%) border-box;
+  padding: 6px;
+
+  border-radius: inherit;
+  content: "";
+  inset: 0;
+  -webkit-mask: linear-gradient(#fff 0 0) content-box,linear-gradient(#fff 0 0);
+  mask: linear-gradient(#fff 0 0) content-box,linear-gradient(#fff 0 0);
+  mask-composite: xor;
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
+  position: absolute;
+}
+
+
+
+/* * Heading */
+/* Sub heading - glass dark */
+.dark-glass-border-gradient:before {
+  background-image: linear-gradient(to top, rgb(255 255 255 / 7%), rgb(255 255 255 / 12%));
+  padding: 1px;
+  
+
+  border-radius: inherit;
+  content: "";
+  inset: 0;
+  -webkit-mask: linear-gradient(#fff 0 0) content-box,linear-gradient(#fff 0 0);
+  mask: linear-gradient(#fff 0 0) content-box,linear-gradient(#fff 0 0);
+  mask-composite: xor;
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
+  position: absolute;
+}
+
+/* Sub heading - glass */
+.glass-border-gradient:before{
+  background-image: linear-gradient(to bottom, rgba(255, 255, 255, 100), rgba(255, 255, 255, 0));
+  padding: 1px;
+
+  border-radius: inherit;
+  content: "";
+  inset: 0;
+  -webkit-mask: linear-gradient(#fff 0 0) content-box,linear-gradient(#fff 0 0);
+  mask: linear-gradient(#fff 0 0) content-box,linear-gradient(#fff 0 0);
+  mask-composite: xor;
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
+  position: absolute;
+}
+
+/* * Gradients */
+/* Home */
+/* .gradient-banner{
+  background: linear-gradient(270deg, #FFCFA3 -4.42%, #C176FC 14.17%, #9076FC 54.38%, #C6B8FF 85.8%);
+} */
+
+.gradient-toekomstvisie{
+  background: linear-gradient(248deg, rgba(120, 87, 255, 0.25) 3.35%, rgba(120, 87, 255, 0.00) 27.56%), #111827
+}
+.test-gradient:before{
+  background: linear-gradient(to top, rgba(255, 207, 163, 1), rgba(193, 118, 252, 1), rgba(144, 118, 252, 1), rgba(198, 184, 255, 1));
+  padding-left: 2.5px;
+
+  border-radius: inherit;
+  content: "";
+  inset: 0;
+  -webkit-mask: linear-gradient(#fff 0 0) content-box,linear-gradient(#fff 0 0);
+  mask: linear-gradient(#fff 0 0) content-box,linear-gradient(#fff 0 0);
+  mask-composite: xor;
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
+  position: absolute;
+}
+
+
+
+/* * footer gradient */
+.custom-bg-gradient {
+  background: linear-gradient(
+    90deg,
+    rgba(139, 92, 246, 0.2) 11.46%,
+    rgba(66, 241, 241, 0.2) 36.98%,
+    rgba(82, 56, 239, 0.2) 70.31%,
+    rgba(139, 92, 246, 0.2) 94.27%
+  );
+  filter: blur(32px);
+}
+
+
+
+
+/* modal */
+.modal-test {
+  z-index: 9999;
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+
+  width: 100dvw;
+  height: 100dvh;
+  /* other styles */
+}

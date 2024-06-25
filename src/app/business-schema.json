@@ -1,0 +1,32 @@
+{
+  "@context": "https://schema.org/",
+  "@graph": [
+    {
+      "@context": "https://schema.org",
+      "@type": "Corporation",
+      "name": "Massive Online Marketing",
+      "alternateName": "Massive",
+      "url": "https://www.massiveonlinemarketing.nl",
+      "logo": "https://www.massiveonlinemarketing.nl/massivelogo",
+      "sameAs": "https://www.massiveonlinemarketing.nl"
+    },
+    {
+      "@type": "WebSite",
+      "name": "Massive Online Marketing",
+      "url": "massiveonlinemarketing.nl",
+      "potentialAction": {
+        "@type": "SearchAction",
+        "target": "https://massiveonlinemarketing.nl/?q={search_term_string}",
+        "query-input": "required name=search_term_string"
+      },
+      "inLanguage": "nl"
+    },
+    {
+      "@type": "ImageObject",
+      "url": "https://massiveonlinemarketing.nl/HIER IMAGE URL",
+      "contentUrl": "https://massiveonlinemarketing.nl/HIER IMAGE URL",
+      "width": 1200,
+      "height": 628
+    }
+  ]
+}
