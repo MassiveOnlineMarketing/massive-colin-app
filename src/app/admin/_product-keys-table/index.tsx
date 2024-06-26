@@ -10,8 +10,7 @@ const ProductKeyTable = ({ orders }: { orders: Key[] }) => {
   // const columnsArray = columns()
 
   return (
-    <div className='max-w-[1400px] mx-auto px-12 pt-12'>
-      <h2 className='text-3xl font-bold'>Krossbow Keys</h2>
+    <div className='mx-auto'>
       <DataTable columns={columns()} data={orders} />
     </div>
   )

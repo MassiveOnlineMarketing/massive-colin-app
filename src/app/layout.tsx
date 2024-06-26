@@ -1,10 +1,8 @@
 import { Inter } from 'next/font/google'
 import '@/styles/globals.css'
-import Script from 'next/script'
 
-// Meta data
-import businessSchema from './business-schema.json'
 import { Toaster } from '@/components/toast/toaster'
+import Image from 'next/image'
 
 
 const inter = Inter({ subsets: ['latin'] })
@@ -82,18 +80,12 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="nl">
-      <body className={`${inter.className} overflow-x-hidden`}>
-
-
+    <html lang="en">
+      <body className={`${inter.className} overflow-x-hidden `}>
         
-          {children}
-
+        {children}
 
         <Toaster />
-        <Script type='application/ld+json' id='business schema'>
-            {JSON.stringify(businessSchema)}
-        </Script>
       </body>
     </html>
   )

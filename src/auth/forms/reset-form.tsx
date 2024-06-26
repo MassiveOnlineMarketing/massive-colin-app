@@ -20,6 +20,8 @@ import { Button } from "@/components/ui/button";
 import { FormError } from "./form-error";
 import { FormSuccess } from "./form-success";
 import { reset } from "@/auth/actions/reset";
+import { Mail } from "lucide-react";
+
 
 export const ResetForm = () => {
   const [error, setError] = useState<string | undefined>("");
@@ -63,9 +65,9 @@ export const ResetForm = () => {
               name="email"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Email</FormLabel>
                   <FormControl>
                     <Input
+                    icon={<Mail />}
                       {...field}
                       disabled={isPending}
                       placeholder="john.doe@example.com"
@@ -82,6 +84,8 @@ export const ResetForm = () => {
           <Button
             disabled={isPending}
             type="submit"
+            variant="primary"
+            option="rounded"
             className="w-full"
           >
             Send reset email

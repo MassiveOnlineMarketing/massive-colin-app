@@ -15,6 +15,7 @@ import { Button } from "@/components/ui/button";
 import { FormError } from "./form-error";
 import { FormSuccess } from "./form-success";
 import { login } from "../actions/login";
+import { KeyIcon, Mail } from "lucide-react";
 
 export const LoginForm = () => {
   const searchParams = useSearchParams();
@@ -40,83 +41,85 @@ export const LoginForm = () => {
     console.log(values)
 
     login(values)
-    .then((data) => {
-      setError(data?.error);
-      // setSuccess(data?.);
-    })
-  
+      .then((data) => {
+        setError(data?.error);
+        // setSuccess(data?.);
+      })
+
   };
 
   return (
     <CardWrapper
-      headerLabel="Welcome back"
+      headerLabel="Login"
       backButtonLabel="Don't have an account?"
       backButtonHref="/auth/register"
     >
       <Form {...form}>
-        <form 
+        <form
           onSubmit={form.handleSubmit(onSubmit)}
           className="space-y-6"
         >
-          <div className="space-y-4">
-              <>
-                <FormField
-                  control={form.control}
-                  name="email"
-                  render={({ field }) => (
-                    <FormItem>
-                      <FormLabel>Email</FormLabel>
-                      <FormControl>
-                        <Input
-                          {...field}
-                          disabled={isPending}
-                          placeholder="john.doe@example.com"
-                          type="email"
-                        />
-                      </FormControl>
-                      <FormMessage />
-                    </FormItem>
-                  )}
-                />
-                <FormField
-                  control={form.control}
-                  name="password"
-                  render={({ field }) => (
-                    <FormItem>
-                      <FormLabel>Password</FormLabel>
-                      <FormControl>
-                        <Input
-                          {...field}
-                          disabled={isPending}
-                          placeholder="******"
-                          type="password"
-                        />
-                      </FormControl>
-                      <Button
-                        size="sm"
-                        variant="link"
-                        asChild
-                        className="px-0 font-normal"
-                      >
-                        <Link href="/auth/reset">
-                          Forgot password?
-                        </Link>
-                      </Button>
-                      <FormMessage />
-                    </FormItem>
-                  )}
-                />
+          <div className="space-y-6">
+            <>
+              <FormField
+                control={form.control}
+                name="email"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormControl>
+                      <Input
+                        icon={<Mail />}
+                        {...field}
+                        disabled={isPending}
+                        placeholder="john.doe@example.com"
+                        type="email"
+                      />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+              <FormField
+                control={form.control}
+                name="password"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormControl>
+                      <Input
+                        icon={<KeyIcon />}
+                        {...field}
+                        disabled={isPending}
+                        placeholder="******"
+                        type="password"
+                      />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
             </>
-          {/* )} */}
+            {/* )} */}
           </div>
           <FormError message={error || urlError} />
           <FormSuccess message={success} />
           <Button
             disabled={isPending}
             type="submit"
+            option='rounded'
+            variant='primary'
             className="w-full"
           >
             Login
+          </Button>
+          <Button
+            size="sm"
+            variant="link"
+            asChild
+            className="px-0 font-normal text-gray-300 w-full"
+          >
+            <Link href="/auth/reset">
+              Forgot password?
+            </Link>
           </Button>
         </form>
       </Form>

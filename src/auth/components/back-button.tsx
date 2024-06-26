@@ -15,10 +15,10 @@ export const BackButton = ({
 }: BackButtonProps) => {
   return (
     <Button
-      variant="link"
-      className="font-normal w-full"
       size="sm"
+      variant="link"
       asChild
+      className="px-0 font-normal text-gray-300 w-full"
     >
       <Link href={href}>
         {label}

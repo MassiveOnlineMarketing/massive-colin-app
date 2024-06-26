@@ -4,7 +4,6 @@
  * @type {string[]}
  */
 export const publicRoutes = [
-  "/",
   "/auth/new-verification",  
 ];
 
@@ -14,8 +13,6 @@ export const publicRoutes = [
  * @type {string[]}
  */
 export const publicDynamicRoutes = [
-  "/test",
-  '/admin',
   '/api',
 ]
 

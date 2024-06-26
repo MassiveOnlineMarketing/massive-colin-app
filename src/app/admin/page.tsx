@@ -8,24 +8,19 @@ import OrdersTable from './_orders-table';
 import { getAllOrders } from '@/data/order';
 import { getKeysPerProduct } from '@/data/admin';
 import ProductKeyTable from './_product-keys-table';
+import TabbedTable from './tabbed-table';
 // import { OrdersTable } from './orders-table';
 
 
 async function page() {
 
-  const session = await auth()
 
-  if (session?.user.role !== 'ADMIN') {
-    return <div>Access Denied</div>
-  }
-  const orders = await getAllOrders()
-  const keys = await getKeysPerProduct('clxurzyj50000ihe42jmujpmk')
 
   return (
     <div>
       {/* <OrdersTable /> */}
-      <OrdersTable orders={orders} />
-      <ProductKeyTable orders={keys}/>
+      <TabbedTable />
+
       <Table />
       <AddKeysForm />
       {/* <AdminForms /> */}

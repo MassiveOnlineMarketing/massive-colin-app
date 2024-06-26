@@ -4,7 +4,6 @@ import { Inter } from "next/font/google";
 import { PRODUCTS } from "@/lib/product-constants";
 
 import { getUserByEmail } from "@/data/user";
-import { getSession } from "next-auth/react";
 import { auth } from "@/auth/auth";
 import LogoutButton from "@/auth/components/logout-button";
 
@@ -12,7 +11,6 @@ const inter = Inter({ subsets: ["latin"] });
 
 export default async function Home() {
   const session = await auth()
-  // console.log('session: ', session)
 
   const user = await getUserByEmail(session?.user.email as string)
   const keys = user?.keys || []
@@ -22,18 +20,17 @@ export default async function Home() {
     cards.push({})
   }
 
-  
+
   function getProduct(productId: string) {
     return PRODUCTS[productId]
   }
-  
+
 
   return (
-    <main className="min-h-screen bg-gradient-to-b from-[#181C1A] to-[#0D0D0D]">
-      <LogoutButton />
-      <Image src="/CARP_Audio_Logo_Website.webp" alt="logo" width={130} height={100} className="mx-auto py-8" />
-      {/* <pre>{JSON.stringify(user, null, 2)}</pre> */}
+    <main className=" min-h-screen bg-gradient-to-b from-[#181C1A] to-[#0D0D0D]">
       <div className=" w-full h-full text-[#FFFFFF] ">
+      <Image src="/CARP_Audio_Logo_Website.webp" alt="logo" width={140} height={108} className="mx-auto py-8" />
+        <LogoutButton />
         <div className="max-w-[1300px] mx-auto">
 
           {/* Top Bar */}
