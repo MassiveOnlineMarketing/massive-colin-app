@@ -2,7 +2,7 @@
 
 import { db } from "@/lib/db";
 
-export const getUserByEmail = async (email: string) => {
+export const getUserByEmail = async (email: string | null | undefined) => {
   if (!email) {
     return null;
   }

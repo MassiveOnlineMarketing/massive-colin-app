@@ -6,13 +6,19 @@ import { PRODUCTS } from "@/lib/product-constants";
 import { getUserByEmail } from "@/data/user";
 import { auth } from "@/auth/auth";
 import LogoutButton from "@/auth/components/logout-button";
+import { redirect, useRouter } from "next/navigation";
 
 const inter = Inter({ subsets: ["latin"] });
 
 export default async function Home() {
   const session = await auth()
+  // const router = useRouter() 
+  if (!session?.user) {
+    redirect('/auth/login') 
+  }
 
-  const user = await getUserByEmail(session?.user.email as string)
+
+  const user = await getUserByEmail(session?.user.email)
   const keys = user?.keys || []
   const numCards = 10 - keys.length
   const cards = []
@@ -29,7 +35,7 @@ export default async function Home() {
   return (
     <main className=" min-h-screen bg-gradient-to-b from-[#181C1A] to-[#0D0D0D]">
       <div className=" w-full h-full text-[#FFFFFF] ">
-      <Image src="/CARP_Audio_Logo_Website.webp" alt="logo" width={140} height={108} className="mx-auto py-8" />
+        <Image src="/CARP_Audio_Logo_Website.webp" alt="logo" width={140} height={108} className="mx-auto py-8" />
         <LogoutButton />
         <div className="max-w-[1300px] mx-auto">
 
