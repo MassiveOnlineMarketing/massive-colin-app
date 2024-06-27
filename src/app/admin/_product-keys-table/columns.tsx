@@ -4,11 +4,11 @@ import { ColumnDef } from "@tanstack/react-table";
 import { StandardHeaderCell, StandardRowCell } from "@/components/ui/table";
 
 import { Checkbox } from "@/components/ui/checkbox";
-import { Key } from "@prisma/client";
+import { KeysWithCustomer } from "@/data/admin";
 
 
 
-export const columns = (): ColumnDef<Key>[] => [
+export const columns = (): ColumnDef<KeysWithCustomer>[] => [
     // * Select column
     {
       id: "select",
@@ -70,8 +70,7 @@ export const columns = (): ColumnDef<Key>[] => [
       ),
       cell: ({ row: { original: { key2 } } }) => (
         <StandardRowCell value={key2} highlight={true} />
-      ),
-      // sortingFn: urlSortingFn,
+      )
     },
     // * Customer Id
     {
@@ -81,8 +80,25 @@ export const columns = (): ColumnDef<Key>[] => [
       ),
       cell: ({ row: { original: { customerId } } }) => (
         <StandardRowCell value={customerId} highlight={true} />
+      )
+    },
+    {
+      accessorKey: "customerName",
+      header: ({ column }) => (
+        <StandardHeaderCell sorting={true} column={column} title="Customer Name" />
       ),
-      // sortingFn: urlSortingFn,
+      cell: ({ row: { original: { customer } } }) => (
+        <StandardRowCell value={ customer?.name } highlight={true} />
+      )
+    },
+    {
+      accessorKey: "customerEmail",
+      header: ({ column }) => (
+        <StandardHeaderCell sorting={true} column={column} title="Customer Email" />
+      ),
+      cell: ({ row: { original: { customer } } }) => (
+        <StandardRowCell value={ customer?.email } highlight={true} />
+      )
     },
   ];
 

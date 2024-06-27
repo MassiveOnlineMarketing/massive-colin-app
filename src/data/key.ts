@@ -1,6 +1,6 @@
 'use server';
 
-import { KeyPair } from "@/app/admin/add-new-keys-form";
+import { KeyPair } from "@/app/admin/_components/add-new-keys-form";
 import { db } from "@/lib/db";
 import { Key } from "@prisma/client";
 

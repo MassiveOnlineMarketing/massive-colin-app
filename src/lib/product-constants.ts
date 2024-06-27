@@ -7,6 +7,16 @@ type ProductDictionary = {
   [key: string]: ProductDetails;
 };
 
+export const PRODUCT_ID_CONSTANTS = {
+  krossbow: 'clxurzyj50000ihe42jmujpmk',
+  amp: 'clxus0z1l0001ihe4onhcwpkx',
+  octapus: 'clxus2dsn0002ihe4zbpinpla',
+  resonote: 'clxus2qwy0003ihe41dl7e0p8',
+  reeferb: 'clxus35ol0004ihe45m8bdfrt',
+  stereo: 'clxus3geq0005ihe4ae0w8f91',
+  mono: 'clxus3rmb0006ihe471svgv93',
+};
+
 export const PRODUCTS: ProductDictionary = {
   'clxurzyj50000ihe42jmujpmk': {
     'name': 'Krossbow',

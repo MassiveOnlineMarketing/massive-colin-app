@@ -66,7 +66,7 @@ const Table = () => {
   }
 
   return (
-    <div>
+    <div className='max-w-[1400px] mx-auto px-12 pt-12'>
       <h1 className='text-2xl'>Users with keys</h1>
       <div className='grid grid-cols-3 border-b'>
         <p>Name</p>

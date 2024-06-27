@@ -1,6 +1,11 @@
 'use server';
 
 import { db } from '@/lib/db';
+import { Key, User } from '@prisma/client';
+
+export type KeysWithCustomer = Key & {
+  customer: User | null
+}
 
 
 export const getKeysPerProduct = async (productId: string) => {
@@ -8,6 +13,9 @@ export const getKeysPerProduct = async (productId: string) => {
     where: {
       productId: productId,
     },
+    include: {
+      customer: true
+    }
   });
 
   return keys;

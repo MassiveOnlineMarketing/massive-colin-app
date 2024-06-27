@@ -10,7 +10,7 @@ export interface KeyPair {
   key2: string;
 }
 
-const AddKeysForm = () => {
+const AddKeysForm = ({ pluginId }: { pluginId: string }) => {
   const entries = Object.entries(PRODUCTS)
 
   const { toast } = useToast()
@@ -36,10 +36,8 @@ const AddKeysForm = () => {
       return { key1, key2 };
     });
 
-    const plugin = formData.get('select') as string;
 
-
-    const res = await addNewKeys(pairs, plugin);
+    const res = await addNewKeys(pairs, pluginId);
 
     if (res.success) {
       toast({
@@ -57,7 +55,7 @@ const AddKeysForm = () => {
       })
     }
 
-    console.log('Plugin:', plugin);
+    console.log('Plugin:', pluginId);
     console.log('Pairs:', pairs);
   }
 
@@ -65,14 +63,6 @@ const AddKeysForm = () => {
     <div>
       <h2 className='text-2xl'>Add keys to the database</h2>
       <form onSubmit={handleSubmit} className='flex flex-col gap-2 max-w-[500px] p-2'>
-        <div className='w-full'>
-          <p>Select Plugin</p>
-          <select name='select' id='select'>
-            {entries.map(product => (
-              <option key={product[0]} value={product[0]}>{product[1].name}</option>
-            ))}
-          </select>
-        </div>
         <div className='w-full'>
           <p>Enter Keys</p>
           <textarea name="text" id="text" className='w-full' cols={30} rows={10} placeholder="Enter key-value pairs separated by tabs"></textarea>

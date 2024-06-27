@@ -10,6 +10,16 @@ const nextConfig = {
     return config;
   },
 
+  images: {
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: 'cdn.shopify.com',
+        port: ''
+      }
+    ]
+  },
+
   env: {
     G_TAG: process.env.G_TAG,
   },

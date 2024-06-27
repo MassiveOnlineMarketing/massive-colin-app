@@ -7,6 +7,8 @@ export * from './row-cells'
 
 export * from './pagination'
 
+export * from './table-pagination'
+
 import SortDataTableIcon from './sort-data-table-icon.svg';
 
 export {

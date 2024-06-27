@@ -1,18 +1,13 @@
 "use client";
 
 import React from "react";
-import { useRouter } from "next/navigation";
 import { cn } from "@/lib/utils";
 
 // Components
 import { ColumnDef, ColumnFiltersState, Row, SortingState, VisibilityState, flexRender, getCoreRowModel, getFilteredRowModel, getPaginationRowModel, getSortedRowModel, useReactTable } from "@tanstack/react-table";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table/table";
 
-import {
-  MagnifyingGlassIcon,
-  ViewColumnsIcon,
-} from "@heroicons/react/24/outline";
-// import DataTablePagination from "@/components/ui/table/table-pagination";
+import { MagnifyingGlassIcon } from "@heroicons/react/24/outline";
 
 interface DataTableProps<TData, TValue> {
   columns: ColumnDef<TData, TValue>[];
@@ -66,8 +61,8 @@ function DataTable<TData, TValue>({
 
   return (
     <>
+      {/* Searchbar 
       <div className="pb-8 pt-2 flex items-center">
-        {/* Searchbar */}
         <div className="mr-auto relative rounded-md shadow-sm h-[34px]">
           <div className="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3">
             <MagnifyingGlassIcon
@@ -76,18 +71,18 @@ function DataTable<TData, TValue>({
             />
           </div>
           <input
-            placeholder="Search query..."
+            placeholder="Search email..."
             value={
-              (table.getColumn("query")?.getFilterValue() as string) ?? ""
+              (table.getColumn("email")?.getFilterValue() as string) ?? ""
             }
             onChange={(event) =>
-              table.getColumn("query")?.setFilterValue(event.target.value)
+              table.getColumn("email")?.setFilterValue(event.target.value)
             }
             className="block w-full rounded-md border-0 py-1.5 pl-10 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 text-sm leading-6"
           />
         </div>
-
       </div>
+              */}
 
       {/* Projects Table */}
       <div className="rounded-md">
@@ -130,10 +125,7 @@ function DataTable<TData, TValue>({
                   className="border-b border-gray-200 hover:bg-neutral-100/50"
                 >
                   {row.getVisibleCells().map((cell, index) => (
-                    <TableCell key={cell.id}
-                      className={cn(
-                        index === 1 && 'w-full'
-                      )}>
+                    <TableCell key={cell.id}>
                       {flexRender(
                         cell.column.columnDef.cell,
                         cell.getContext(),

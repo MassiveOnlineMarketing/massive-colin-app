@@ -4,14 +4,13 @@ import { Key } from '@prisma/client'
 import React from 'react'
 import { columns } from './columns'
 import DataTable from './table'
+import { KeysWithCustomer } from '@/data/admin'
 
-const ProductKeyTable = ({ orders }: { orders: Key[] }) => {
-
-  // const columnsArray = columns()
+const ProductKeyTable = ({ keys }: { keys: KeysWithCustomer[] }) => {
 
   return (
     <div className='mx-auto'>
-      <DataTable columns={columns()} data={orders} />
+      <DataTable columns={columns()} data={keys} />
     </div>
   )
 }
