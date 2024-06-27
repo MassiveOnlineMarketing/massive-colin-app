@@ -38,7 +38,6 @@ export const LoginForm = () => {
   const onSubmit = (values: z.infer<typeof LoginSchema>) => {
     setError("");
     setSuccess("");
-    console.log(values)
 
     login(values)
       .then((data) => {
@@ -51,7 +50,7 @@ export const LoginForm = () => {
   return (
     <CardWrapper
       headerLabel="Login"
-      backButtonLabel="Don't have an account?"
+      backButtonLabel=""
       backButtonHref="/auth/register"
     >
       <Form {...form}>

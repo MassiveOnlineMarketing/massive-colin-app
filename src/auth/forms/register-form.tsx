@@ -7,20 +7,14 @@ import { zodResolver } from "@hookform/resolvers/zod";
 
 import { RegisterSchema } from "../schema";
 import { Input } from "@/components/ui/input";
-import {
-  Form,
-  FormControl,
-  FormField,
-  FormItem,
-  FormLabel,
-  FormMessage,  
-} from "@/components/ui/form";
+import { Form, FormControl, FormField, FormItem, FormMessage } from "@/components/ui/form";
 import { CardWrapper } from "./card-wrapper"
 import { Button } from "@/components/ui/button";
 import { FormError } from "./form-error";
 import { FormSuccess } from "./form-success";
 import { register } from "@/auth/actions/register";
 import { useSearchParams } from "next/navigation";
+import { KeyIcon, Mail } from "lucide-react";
 
 export const RegisterForm = () => {
   const [error, setError] = useState<string | undefined>("");
@@ -41,7 +35,7 @@ export const RegisterForm = () => {
   const onSubmit = (values: z.infer<typeof RegisterSchema>) => {
     setError("");
     setSuccess("");
-    
+
     startTransition(() => {
       register(values)
         .then((data) => {
@@ -61,7 +55,7 @@ export const RegisterForm = () => {
       backButtonHref="/auth/login"
     >
       <Form {...form}>
-        <form 
+        <form
           onSubmit={form.handleSubmit(onSubmit)}
           className="space-y-6"
         >
@@ -71,9 +65,9 @@ export const RegisterForm = () => {
               name="email"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Email</FormLabel>
                   <FormControl>
                     <Input
+                      icon={<Mail />}
                       {...field}
                       disabled={isPending}
                       placeholder="john.doe@example.com"
@@ -89,9 +83,9 @@ export const RegisterForm = () => {
               name="password"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Password</FormLabel>
                   <FormControl>
                     <Input
+                      icon={<KeyIcon />}
                       {...field}
                       disabled={isPending}
                       placeholder="******"
@@ -108,6 +102,8 @@ export const RegisterForm = () => {
           <Button
             disabled={isPending}
             type="submit"
+            option='rounded'
+            variant='primary'
             className="w-full"
           >
             Create an account

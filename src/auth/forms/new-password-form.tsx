@@ -14,13 +14,14 @@ import {
   FormField,
   FormItem,
   FormLabel,
-  FormMessage,  
+  FormMessage,
 } from "@/components/ui/form";
 import { CardWrapper } from "./card-wrapper"
 import { Button } from "@/components/ui/button";
 import { FormError } from "./form-error";
 import { FormSuccess } from "./form-success";
 import { newPassword } from "@/auth/actions/new-password";
+import { KeyIcon } from "lucide-react";
 
 export const NewPasswordForm = () => {
   const searchParams = useSearchParams();
@@ -57,7 +58,7 @@ export const NewPasswordForm = () => {
       backButtonHref="/auth/login"
     >
       <Form {...form}>
-        <form 
+        <form
           onSubmit={form.handleSubmit(onSubmit)}
           className="space-y-6"
         >
@@ -67,9 +68,9 @@ export const NewPasswordForm = () => {
               name="password"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Password</FormLabel>
                   <FormControl>
                     <Input
+                      icon={<KeyIcon />}
                       {...field}
                       disabled={isPending}
                       placeholder="******"
@@ -86,6 +87,8 @@ export const NewPasswordForm = () => {
           <Button
             disabled={isPending}
             type="submit"
+            variant='primary'
+            option='rounded'
             className="w-full"
           >
             Reset password
