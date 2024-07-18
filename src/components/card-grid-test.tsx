@@ -21,8 +21,8 @@ type CardProps = {
 };
 
 const Card = ({ productId, productKeys, owned, index }: CardProps) => (
-  <div key={`${productId}-${index}`} className={`relative flex flex-col gap-4 rounded-3xl p-3 h-[300px] ${owned ? 'bg-[#1e211f]' : 'bg-[#1e211f]/30'}`}>
-    <h2 className={`text-[#FFFFFF] text-2xl text-center ${oswald.className}`}>{getProduct(productId).name}</h2>
+  <div key={`${productId}-${index}`} className={`relative flex flex-col gap-4 rounded-3xl p-3 h-[300px] shadow-xl ${owned ? 'bg-[#1e211f]' : 'bg-[#1e211f]/30'}`}>
+    <h2 className={`text-2xl text-center ${oswald.className} ${owned ? 'text-[#FFFFFF]' :"text-[#FFFFFF]/50"}`}>{getProduct(productId).name}</h2>
     <Link target="_blank" href={getProduct(productId).storeLink}>
       <Image src={getProduct(productId).imgUrl} alt="product" width={getProduct(productId).width} height={getProduct(productId).height} className={`h-[130px] w-fit mx-auto ${owned ? '' : 'opacity-40'}`} />
     </Link>
@@ -40,7 +40,7 @@ const Card = ({ productId, productKeys, owned, index }: CardProps) => (
       </div>
     )}
     {owned && <div className="absolute right-4 top-4 rounded-full bg-green-500 w-2 h-2 animate-pulse"></div>}
-    {!owned && <LockClosedIcon className="absolute right-4 top-4" />}
+    {!owned && <LockClosedIcon className="absolute right-4 top-4 text-white/50" />}
   </div>
 );
 

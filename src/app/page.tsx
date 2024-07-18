@@ -17,8 +17,8 @@ export default async function Home() {
 
   return (
     <main className=" min-h-screen bg-gradient-to-b from-[#181C1A] to-[#0D0D0D]">
-      <div className=" w-full h-full text-[#FFFFFF] ">
-        <div className="max-w-[1300px] mx-auto scale-90">
+      <div className=" w-full h-full text-[#FFFFFF]">
+        <div className="max-w-[1300px] mx-auto">
 
           {/* Top Bar */}
           <Topbar userName={user?.name as string} userEmail={user?.email as string} />

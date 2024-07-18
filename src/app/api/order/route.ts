@@ -8,10 +8,21 @@ const BUNDLE_SKUS = ['KRSB', 'PACH', 'PUSB'];
 
 
 
+type Data = {
+  email: string;
+  first_name: string;
+  last_name: string;
+  order_number: number;
+  line_items: any[];
+}
+
 export const GET = async (req: NextRequest) => {
- 
-  const customerEmail = data.customer.email;
-  const customerName = `${data.customer.first_name} ${data.customer.last_name}`;
+  const data: Data = await req.json();
+  const { email, first_name, last_name, order_number, line_items } = data;
+  // data.customer.email
+  const customerEmail = email;
+  // data.customer.first_name
+  const customerName = `${first_name} ${last_name}`;
   // const orderNumber = data.order_number;
   // const products = data.line_items.map((item) => item);
 
@@ -24,11 +35,12 @@ export const GET = async (req: NextRequest) => {
     newUser = true;
   }
 
-  //* Create order
+  //* Create order 
+  // data.order_number
   const order = await db.order.create({
     data: {
       customerId: customer.id,
-      orderNumber: data.order_number,
+      orderNumber: order_number,
     }
   });
 
@@ -36,7 +48,8 @@ export const GET = async (req: NextRequest) => {
   let productKeys: Key[] = [];
 
   //* Assign keys to customer
-  for (const product of data.line_items.map((item: any) => item)) {
+  // data.line_items
+  for (const product of line_items.map((item: any) => item)) {
     if (BUNDLE_SKUS.includes(product.sku)) {
 
       const bundleProducts = await db.bundle.findFirst({
