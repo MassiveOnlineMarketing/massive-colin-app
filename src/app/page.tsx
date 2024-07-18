@@ -5,6 +5,7 @@ import { auth } from "@/auth/auth";
 import Topbar from "@/components/topbar";
 import CardGrid from "@/components/card-grid";
 import CardGridTest from "@/components/card-grid-test";
+import Downloads from "@/components/downloads";
 
 
 export default async function Home() {
@@ -17,7 +18,7 @@ export default async function Home() {
   return (
     <main className=" min-h-screen bg-gradient-to-b from-[#181C1A] to-[#0D0D0D]">
       <div className=" w-full h-full text-[#FFFFFF] ">
-        <div className="max-w-[1300px] mx-auto">
+        <div className="max-w-[1300px] mx-auto scale-90">
 
           {/* Top Bar */}
           <Topbar userName={user?.name as string} userEmail={user?.email as string} />
@@ -25,6 +26,7 @@ export default async function Home() {
           {/* Cards Grid */}
           <CardGridTest keys={keys} />
 
+          <Downloads />
         </div>
       </div>
     </main>

@@ -22,7 +22,7 @@ const Topbar = ({ userName, userEmail }: TopbarProps) => {
         </div>
       </div>
       <div className="flex flex-col gap-8 pb-8">
-        <p className={`text-2xl ${oswald.className}`}>Welcome {userName},</p>
+        <p className={`text-4xl ${oswald.className}`}>Welcome {userName},</p>
         <div className="flex items-center justify-between">
           <div className="px-4 py-2 bg-white text-gray-900 rounded-full">
             <p className={`${inter.className}`}>{userEmail}</p>
