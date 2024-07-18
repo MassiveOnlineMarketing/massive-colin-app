@@ -3,7 +3,7 @@ import { Resend } from "resend";
 const resend = new Resend(process.env.RESEND_API_KEY);
 
 const domain = process.env.WEBSITE_URL;
-const NO_REPLY_EMAIL = "carp@carpaudio.com";
+const NO_REPLY_EMAIL = "CARP Audio <noreply@carpaudio.com>";
 
 export const sendTwoFactorTokenEmail = async (
   email: string,
@@ -28,6 +28,7 @@ export const sendPasswordResetEmail = async (
     to: email,
     subject: "Reset your password",
     html: `<p>Click <a href="${resetLink}">here</a> to reset password.</p>`,
+    
     headers: {
       "X-Priority": "1 (Highest)",
       "Priority": "urgent",

@@ -16,6 +16,7 @@ import { FormError } from "./form-error";
 import { FormSuccess } from "./form-success";
 import { login } from "../actions/login";
 import { KeyIcon, Mail } from "lucide-react";
+import { LoadingSpinner } from "@/components/ui/loading-spinner";
 
 export const LoginForm = () => {
   const searchParams = useSearchParams();
@@ -108,7 +109,7 @@ export const LoginForm = () => {
             variant='primary'
             className="w-full"
           >
-            Login
+            {isPending ? (<LoadingSpinner />) : ('Login')}
           </Button>
           <Button
             size="sm"
