@@ -4,7 +4,7 @@ import React from 'react'
 
 const Downloads = () => {
   return (
-    <div className='grid grid-cols-2 py-[150px]'>
+    <div className='grid md:grid-cols-2 gap-10 py-[150px]'>
       <div className='flex flex-col items-center  w-full'>
         <WindowsLogo className='h-[68px] text-white' />
         <p className='mt-5'>Windows / VST3</p>

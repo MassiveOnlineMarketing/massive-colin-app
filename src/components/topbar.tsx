@@ -26,8 +26,8 @@ const Topbar = ({ userName, userEmail }: TopbarProps) => {
       </div>
       <div className="flex flex-col gap-8 pb-8">
         <p className={`text-4xl ${oswald.className}`}>Welcome {userName},</p>
-        <div className="flex items-center justify-between">
-          <div className="px-4 py-2 bg-white text-gray-900 rounded-full">
+        <div className="flex flex-col md:flex-row md:items-center justify-between">
+          <div className="px-4 py-2 bg-white text-gray-900 rounded-full w-fit">
             <p className={`${inter.className}`}>{userEmail}</p>
           </div>
           <p className={`text-5xl ${oswald.className}`}>My Plugins</p>

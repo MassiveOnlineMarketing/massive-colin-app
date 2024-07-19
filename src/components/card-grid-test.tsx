@@ -21,7 +21,7 @@ type CardProps = {
 };
 
 const Card = ({ productId, productKeys, owned, index }: CardProps) => (
-  <div key={`${productId}-${index}`} className={`relative flex flex-col gap-4 rounded-3xl p-3 h-[300px] shadow-xl ${owned ? 'bg-[#1e211f]' : 'bg-[#1e211f]/30'}`}>
+  <div key={`${productId}-${index}`} className={`relative flex flex-col gap-4 rounded-3xl p-3 h-[300px] w-[300px] shadow-xl ${owned ? 'bg-[#1e211f]' : 'bg-[#1e211f]/30'}`}>
     <h2 className={`text-2xl text-center ${oswald.className} ${owned ? 'text-[#FFFFFF]' :"text-[#FFFFFF]/50"}`}>{getProduct(productId).name}</h2>
     <Link target="_blank" href={getProduct(productId).storeLink}>
       <Image src={getProduct(productId).imgUrl} alt="product" width={getProduct(productId).width} height={getProduct(productId).height} className={`h-[130px] w-fit mx-auto ${owned ? '' : 'opacity-40'}`} />
@@ -54,9 +54,9 @@ const CardGridTest = ({ keys }: CardGridProps) => {
   );
 
   return (
-    <div className="grid grid-cols-4 gap-10">
+    // <div className="grid grid-cols-4 gap-10">
+    <div className='flex flex-wrap gap-8 w-fit mx-auto justify-center'>
       {sortedProductEntries.map(([key, productId]) => {
-        const product = PRODUCTS[productId];
         const owned = keys.some(userKey => userKey.productId === productId);
         const productKeys = keys.filter(userKey => userKey.productId === productId);
 
