@@ -1,7 +1,7 @@
 import { Resend } from "resend";
 import { PRODUCTS } from "../product-constants";
-import { Key } from "@prisma/client";
-import { ServerKey } from "@/app/api/order/type";
+import { ServerKey } from "@/app/api/test/type";
+
 
 const resend = new Resend(process.env.RESEND_API_KEY);
 

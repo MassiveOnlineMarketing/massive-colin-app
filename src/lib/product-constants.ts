@@ -12,17 +12,17 @@ type ProductDictionary = {
 };
 
 export const PRODUCT_ID_CONSTANTS = {
-  krossbow: 'clxurzyj50000ihe42jmujpmk',
-  amp: 'clxus0z1l0001ihe4onhcwpkx',
-  octapus: 'clxus2dsn0002ihe4zbpinpla',
-  resonote: 'clxus2qwy0003ihe41dl7e0p8',
-  reeferb: 'clxus35ol0004ihe45m8bdfrt',
-  stereo: 'clxus3geq0005ihe4ae0w8f91',
-  mono: 'clxus3rmb0006ihe471svgv93',
+  krossbow: '8818545066326',
+  amp: '8703626576214',
+  octapus: '8651898257750',
+  resonote: '8612997890390',
+  reeferb: '8536354226518',
+  stereo: '8492913262934',
+  mono: '8492908020054',
 };
 
 export const PRODUCTS: ProductDictionary = {
-  'clxurzyj50000ihe42jmujpmk': {
+  '8818545066326': {
     'name': 'Krossbow',
     // 'imgUrl': '/gui/krossbow-gui.png',
     'storeLink': 'https://carpaudio.com/products/krossbow',
@@ -31,7 +31,7 @@ export const PRODUCTS: ProductDictionary = {
     'width': 425,
     'height': 400,
   },
-  'clxus0z1l0001ihe4onhcwpkx': {
+  '8703626576214': {
     'name': 'APM Live',
     // 'imgUrl': '/gui/amp-live-gui.png',
     'storeLink': 'https://carpaudio.com/products/apm-live',
@@ -40,7 +40,7 @@ export const PRODUCTS: ProductDictionary = {
     'width': 526,
     'height': 351,
   },
-  "clxus2dsn0002ihe4zbpinpla": {
+  "8651898257750": {
     'name': 'Octapus',
     // 'imgUrl': '/gui/octapus-gui.png',
     'storeLink': 'https://carpaudio.com/products/octapus',
@@ -49,7 +49,7 @@ export const PRODUCTS: ProductDictionary = {
     'width': 280,
     'height': 465,
   },
-  'clxus2qwy0003ihe41dl7e0p8': {
+  '8612997890390': {
     'name': 'Resonote',
     // 'imgUrl': '/gui/resonote-gui.png',
     'storeLink': 'https://carpaudio.com/products/resonote',
@@ -58,7 +58,7 @@ export const PRODUCTS: ProductDictionary = {
     'width': 800,
     'height': 600,
   },
-  'clxus35ol0004ihe45m8bdfrt': {
+  '8536354226518': {
     'name': 'Reeferb',
     // 'imgUrl': '/gui/reeferb-gui.png',
     'storeLink': 'https://carpaudio.com/products/reeferb',
@@ -67,7 +67,7 @@ export const PRODUCTS: ProductDictionary = {
     'width': 910,
     'height': 459,
   },
-  'clxus3geq0005ihe4ae0w8f91': {
+  '8492913262934': {
     'name': "Stereo Pusher",
     // 'imgUrl': '/gui/stereo-pusher-gui.png',
     'storeLink': 'https://carpaudio.com/products/stereo-pusher',
@@ -76,7 +76,7 @@ export const PRODUCTS: ProductDictionary = {
     'width': 250,
     'height': 484,
   },
-  'clxus3rmb0006ihe471svgv93': {
+  '8492908020054': {
     'name': "Mono Pusher",
     // 'imgUrl': '/gui/mono-pusher-gui.png',
     'storeLink': 'https://carpaudio.com/products/mono-pusher',
