@@ -143,11 +143,11 @@ export const POST = async (req: NextRequest) => {
     if (newCustomer) {
       // Send welcome email with keys
       console.log('send email account');
-      sendKeysEmailWithAccount(email, customerName, productKeys)
+      await sendKeysEmailWithAccount(email, customerName, productKeys)
     } else {
       // Send keys
       console.log('send email keys');
-      sendKeysEmail(email, customerName, productKeys);
+      await sendKeysEmail(email, customerName, productKeys);
     }
 
     console.log('productKeys: ', productKeys)

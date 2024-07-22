@@ -24,6 +24,10 @@ export const sendKeysEmail = async (
   customerName: string,
   keys: ServerKey[]
 ) => {
+  console.log('sendKeysEmail')
+  console.log('customerEmail: ', customerEmail)
+  console.log('customerName: ', customerName)
+
 
   const keysHtml = keys.map(key => {
     return `
@@ -64,6 +68,10 @@ export const sendKeysEmailWithAccount = async (
   customerName: string,
   keys: ServerKey[]
 ) => {
+
+  console.log('sendKeysEmailWAcc')
+  console.log('customerEmail: ', customerEmail)
+  console.log('customerName: ', customerName)
 
   const keysHtml = keys.map(key => {
     return `
