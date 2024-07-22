@@ -10,7 +10,7 @@ const ClientPage = () => {
   const handleButtonClick = async () => {
     console.log('button clicked')
     // await generateKeys()
-    await fetch('/api/test', {
+    await fetch('/api/order-created-colin', {
       method: 'POST', // Assuming you're sending data to the server
       headers: {
         'Content-Type': 'application/json',

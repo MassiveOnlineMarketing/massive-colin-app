@@ -1,30 +1,24 @@
 import { Resend } from "resend";
 import { PRODUCTS } from "../product-constants";
-import { ServerKey } from "@/app/api/test/type";
+import { ServerKey } from "@/app/api/order-created-colin/types";
 
 
 const resend = new Resend(process.env.RESEND_API_KEY);
 
+// TODO: change to the domain of the website
 const domain = process.env.WEBSITE_URL;
 
-// export const sendLowKeyStockEmail = async (
-//   productId: string,
-//   keysLeft: number
-// ) => {
-//   await resend.emails.send({
-//     from: "noreply@carpaudio.com",
-//     to: "carpaudio@gmail.com",
-//     subject: "Low key stock",
-//     html: `<p>Product: ${PRODUCTS[productId]?.name} has only ${keysLeft} keys left</p>`
-//   });
-// };
-
+/**
+ * Sends an email containing keys to a customer.
+ * @param customerEmail - The email address of the customer.
+ * @param customerName - The name of the customer.
+ * @param keys - An array of ServerKey objects representing the keys to be sent.
+ */
 export const sendKeysEmail = async (
   customerEmail: string,
   customerName: string,
   keys: ServerKey[]
 ) => {
-  console.log('sendKeysEmail')
   console.log('customerEmail: ', customerEmail)
   console.log('customerName: ', customerName)
 
@@ -38,7 +32,7 @@ export const sendKeysEmail = async (
   }).join('')
 
 
-  await resend.emails.send({
+  const res = await resend.emails.send({
     from: "carpaudio@carpaudio.com",
     // TODO: change to customer email
     to: 'trespaan@gmail.com',
@@ -61,15 +55,26 @@ export const sendKeysEmail = async (
       <p> CARP Audio </p>
     `
   });
+
+  if (res.error) {
+    console.error('Error: ', res.error)
+    return
+  }
+
+  console.log('🟢 Keys email sent')
 }
 
+/**
+ * Sends an email to the customer with the provided keys with the account activation link.
+ * @param customerEmail - The email address of the customer.
+ * @param customerName - The name of the customer.
+ * @param keys - An array of ServerKey objects representing the keys to be sent.
+ */
 export const sendKeysEmailWithAccount = async (
   customerEmail: string,
   customerName: string,
   keys: ServerKey[]
 ) => {
-
-  console.log('sendKeysEmailWAcc')
   console.log('customerEmail: ', customerEmail)
   console.log('customerName: ', customerName)
 
@@ -82,9 +87,9 @@ export const sendKeysEmailWithAccount = async (
   }).join('')
 
 
-  await resend.emails.send({
+  const res = await resend.emails.send({
     from: "carpaudio@carpaudio.com",
-    // TODO: change to customer email
+    // TODO: change to customer email + localhost in the email
     to: 'trespaan@gmail.com',
     subject: "Your keys from CARP Audio",
     html: `    
@@ -106,4 +111,11 @@ export const sendKeysEmailWithAccount = async (
       <p> CARP Audio </p>
     `
   });
+
+  if (res.error) {
+    console.error('Error: ', res.error)
+    return
+  }
+
+  console.log('🟢 Keys email sent with account')
 }

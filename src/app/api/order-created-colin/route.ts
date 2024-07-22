@@ -1,13 +1,10 @@
-const SHOPIFY_WEBHOOK_SECRET = '5f25bd8a428a8abd8b1478bbbcc63f1ea11d1f22f47c375ee272ac923741f1ff'
-const URL = 'http://172.233.40.227:8080/generate_key'
 
 import crypto from 'crypto';
 import { NextRequest } from 'next/server';
 
-import { IShopifyOrder, ServerKey, ServerResponse } from '../test/type';
+import { IShopifyOrder, ServerKey, ServerResponse } from './types';
 import { db } from "@/lib/db"
 import { sendKeysEmail, sendKeysEmailWithAccount } from "@/lib/mail/keys"
-
 
 
 const BUNDLE_PRODUCT_IDS: { [key: number]: number[] } = {
@@ -29,6 +26,8 @@ const SEEDS: { [key: number]: string } = {
   8818545066326: '130920006'
 }
 
+const SHOPIFY_WEBHOOK_SECRET = process.env.SHOPIFY_WEBHOOK_SECRET || '';
+const CPP_API_URL = process.env.CPP_API || '';
 
 export const POST = async (req: NextRequest) => {
   const data = await req.text();
@@ -44,18 +43,19 @@ export const POST = async (req: NextRequest) => {
 
   if (hmacHeader === digest) {
     console.log('🟢 Order created webhook received');
-
-    const orderData: IShopifyOrder = JSON.parse(data);
-
     await db.orders.create({
       data: {
         json: data
       },
     });
 
-    const { customer: { email }, customer: { first_name }, customer: { last_name }, order_number, line_items } = orderData;
+
+  const orderData: IShopifyOrder = JSON.parse(data);
+  // const orderData: IShopifyOrder = await req.json();
+  const { customer: { email }, customer: { first_name }, customer: { last_name }, order_number, line_items } = orderData;
     const customerName = `${first_name} ${last_name}`
-    console.log('🟢 Processing order: ', order_number) 
+    console.log('🟢 Processing order: ', order_number)
+    console.log('url', CPP_API_URL)
 
     let newCustomer = false
     //* Check if we already have an user with this email
@@ -82,51 +82,25 @@ export const POST = async (req: NextRequest) => {
     //* Create product keys
     let productKeys: ServerKey[] = []
     for (const item of line_items) {
+      let keysToAdd: ServerKey[] | null = null;
+
       // Bundle product
       if (item.product_id in BUNDLE_PRODUCT_IDS) {
-        console.log('bundle product')
-        console.log('product id ', item.product_id)
-
-        const productIds = BUNDLE_PRODUCT_IDS[item.product_id]
-        for (const productId of productIds) {
-          const seed = SEEDS[productId]
-          const key = await generateKey(email, seed, order_number)
-
-          if (key === null) {
-            // TODO: handle error something went wrong email, and mail to carp audio to fix
-            return
-          }
-
-          productKeys.push({
-            key1: email,
-            key2: key,
-            productId: productId.toString(),
-            customerId: customer.id,
-            orderId: order.id
-          })
-        }
-
-        // Single product
+        console.log('product id ', item.product_id);
+        const productIds = BUNDLE_PRODUCT_IDS[item.product_id];
+        keysToAdd = await processProductKeys(email, productIds, order_number, customer.id, order.id);
       } else {
-        console.log('single product')
-        console.log('product id: ', item.product_id)
-
-        const seed = SEEDS[item.product_id]
-        const key = await generateKey(email, seed, order_number)
-
-        if (key === null) {
-          // TODO: handle error something went wrong email, and mail to carp audio to fix
-          return
-        }
-
-        productKeys.push({
-          key1: email,
-          key2: key,
-          productId: item.product_id.toString(),
-          customerId: customer.id,
-          orderId: order.id
-        })
+        // Single product
+        console.log('product id: ', item.product_id);
+        keysToAdd = await processProductKeys(email, [item.product_id], order_number, customer.id, order.id);
       }
+
+      if (keysToAdd === null) {
+        // TODO: handle error something went wrong email, and mail to carp audio to fix
+        return;
+      }
+
+      productKeys = productKeys.concat(keysToAdd);
     }
 
     //* Save keys to db
@@ -138,19 +112,19 @@ export const POST = async (req: NextRequest) => {
       return
     }
 
+    console.log('productKeys: ', productKeys)
 
     //* Send keys to user
     if (newCustomer) {
       // Send welcome email with keys
-      console.log('send email account');
-      await sendKeysEmailWithAccount(email, customerName, productKeys)
+      console.log('🟡 Send keys with account');
+      sendKeysEmailWithAccount(email, customerName, productKeys)
     } else {
       // Send keys
-      console.log('send email keys');
-      await sendKeysEmail(email, customerName, productKeys);
+      console.log('🟡 Send keys without account');
+      sendKeysEmail(email, customerName, productKeys);
     }
 
-    console.log('productKeys: ', productKeys)
 
     return new Response(null, { status: 200 });
   } else {
@@ -161,30 +135,68 @@ export const POST = async (req: NextRequest) => {
 };
 
 
+/**
+ * Processes product keys for a given email, product IDs, order number, customer ID, and order ID.
+ * 
+ * @param email - The email associated with the product keys.
+ * @param productIds - An array of product IDs.
+ * @param order_number - The order number.
+ * @param customerId - The customer ID.
+ * @param orderId - The order ID.
+ * @returns A promise that resolves to an array of ServerKey objects or null if an error occurred.
+ */
+async function processProductKeys(email: string, productIds: number[], order_number: number, customerId: string, orderId: string): Promise<ServerKey[] | null> {
+  let productKeys: ServerKey[] = [];
+  for (const productId of productIds) {
+    const seed = SEEDS[productId];
+    const key = await generateKey(email, seed, order_number);
+    console.log('key: ', key);
 
+    if (key === null) {
+      // TODO: handle error something went wrong email, and mail to carp audio to fix
+      return null;
+    }
+
+    productKeys.push({
+      key1: email,
+      key2: key,
+      productId: productId.toString(),
+      customerId: customerId,
+      orderId: orderId
+    });
+  }
+  return productKeys;
+}
+
+
+
+/**
+ * Generates a key based on the provided email, seed, and order number.
+ * @param email - The email address.
+ * @param seed - The seed value.
+ * @param order_number - The order number.
+ * @returns The generated key if successful, otherwise null.
+ */
 const generateKey = async (email: string, seed: string, order_number: number) => {
   try {
     const params = {
       name: email,
       seed: seed,
     }
-
-    const res = await fetch(URL + '?' + new URLSearchParams(params))
-
+    const res = await fetch(CPP_API_URL + '?' + new URLSearchParams(params))
     const data: ServerResponse = await res.json()
-    // console.log('data: ', data)
 
     if (data.status === 'success') {
       // console.log('generated key: ', data.generatedKey)
 
       return data.generatedKey
     } else {
-      console.error('🔴 error: ', data.message, order_number)
+      console.error('error: ', data.message, order_number)
       // TODO: handle error something went wrong email, and mail to carp audio to fix
       return null
     }
   } catch (error) {
-    console.error('🔴 error: ', error, order_number)
+    console.error('error: ', error, order_number)
     // TODO: handle error something went wrong email, and mail to carp audio to fix
     return null
   }
