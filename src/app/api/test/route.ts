@@ -6,15 +6,6 @@ import { sendKeysEmail, sendKeysEmailWithAccount } from "@/lib/mail/keys"
 
 const URL = 'http://172.233.40.227:8080/generate_key'
 
-
-// 'resonote': '8612997890390',
-// 'stereoPusher': '8492913262934',
-// 'monoPusher': '8492908020054',
-// 'reeferb': '8536354226518',
-// 'octapus': '8651898257750',
-// 'ampLive': '8703626576214',
-// 'krossbow': '8818545066326',
-
 const BUNDLE_PRODUCT_IDS: { [key: number]: number[] } = {
   // Parallel Bundle
   8785285742934: [8612997890390, 8651898257750],
