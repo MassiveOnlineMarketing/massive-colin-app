@@ -1,13 +1,9 @@
 import React from 'react'
-import Table, { UserTypeWithKeys } from './tabel'
-import { getAllUsersOrders } from '@/data/user';
-import AddKeysForm from './_components/add-new-keys-form';
-import { AdminForms } from './add-new-product';
+import Table from './tabel'
 import { auth } from '@/auth/auth';
 import OrdersTable from './_orders-table';
 import { getAllOrders } from '@/data/order';
 import { getKeysPerProduct } from '@/data/admin';
-import ProductKeyTable from './_product-keys-table';
 import TabbedTable from './tabbed-table';
 import { PRODUCT_ID_CONSTANTS } from '@/lib/product-constants';
 // import { OrdersTable } from './orders-table';
@@ -41,7 +37,6 @@ async function page() {
 
 
       <Table />
-      {/* <AdminForms /> */}
     </div>
   )
 }
