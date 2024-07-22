@@ -42,3 +42,10 @@ export const addNewKeys = async (keys: KeyPair[], productId: string) => {
 
   return { error: 'Failed to add keys' }
 }
+
+
+export const deleteAllKeys = async () => {
+  const res = await db.key.deleteMany();
+
+  // return res;
+}

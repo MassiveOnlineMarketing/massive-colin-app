@@ -1,27 +1,28 @@
 import { Resend } from "resend";
 import { PRODUCTS } from "../product-constants";
 import { Key } from "@prisma/client";
+import { ServerKey } from "@/app/api/order/type";
 
 const resend = new Resend(process.env.RESEND_API_KEY);
 
 const domain = process.env.WEBSITE_URL;
 
-export const sendLowKeyStockEmail = async (
-  productId: string,
-  keysLeft: number
-) => {
-  await resend.emails.send({
-    from: "noreply@carpaudio.com",
-    to: "carpaudio@gmail.com",
-    subject: "Low key stock",
-    html: `<p>Product: ${PRODUCTS[productId]?.name} has only ${keysLeft} keys left</p>`
-  });
-};
+// export const sendLowKeyStockEmail = async (
+//   productId: string,
+//   keysLeft: number
+// ) => {
+//   await resend.emails.send({
+//     from: "noreply@carpaudio.com",
+//     to: "carpaudio@gmail.com",
+//     subject: "Low key stock",
+//     html: `<p>Product: ${PRODUCTS[productId]?.name} has only ${keysLeft} keys left</p>`
+//   });
+// };
 
 export const sendKeysEmail = async (
   customerEmail: string,
   customerName: string,
-  keys: Key[]
+  keys: ServerKey[]
 ) => {
 
   const keysHtml = keys.map(key => {
@@ -35,7 +36,8 @@ export const sendKeysEmail = async (
 
   await resend.emails.send({
     from: "carpaudio@carpaudio.com",
-    to: 'carpaudio@gmail.com',
+    // TODO: change to customer email
+    to: 'trespaan@gmail.com',
     subject: "Your keys from CARP Audio",
     html: `    
       <p>Hello ${customerName},</p>
@@ -60,7 +62,7 @@ export const sendKeysEmail = async (
 export const sendKeysEmailWithAccount = async (
   customerEmail: string,
   customerName: string,
-  keys: Key[]
+  keys: ServerKey[]
 ) => {
 
   const keysHtml = keys.map(key => {
@@ -74,6 +76,7 @@ export const sendKeysEmailWithAccount = async (
 
   await resend.emails.send({
     from: "carpaudio@carpaudio.com",
+    // TODO: change to customer email
     to: 'trespaan@gmail.com',
     subject: "Your keys from CARP Audio",
     html: `    

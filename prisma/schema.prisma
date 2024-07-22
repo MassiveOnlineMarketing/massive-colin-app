@@ -75,37 +75,13 @@ model TwoFactorToken {
   @@unique([email, token])
 }
 
-model Product {
-  id      String          @id @default(cuid())
-  sku     String          @unique
-  keys    Key[]
-  bundles ProductBundle[]
-}
-
-model Bundle {
-  id       String          @id @default(cuid())
-  sku      String
-  products ProductBundle[]
-}
-
-model ProductBundle {
-  productId String
-  product   Product @relation(fields: [productId], references: [id])
-  bundleId  String
-  bundle    Bundle  @relation(fields: [bundleId], references: [id])
-
-  @@id([productId, bundleId])
-}
-
 model Key {
   id         String    @id @default(cuid())
   key1       String
   key2       String
   productId  String
-  product    Product   @relation(fields: [productId], references: [id])
   customerId String?
   customer   User?     @relation(fields: [customerId], references: [id])
-  usedAt     DateTime?
   Order      Order?    @relation(fields: [orderId], references: [id])
   orderId    String?
 }

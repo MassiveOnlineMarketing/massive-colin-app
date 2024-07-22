@@ -18,6 +18,9 @@ export const POST = async (req: NextRequest) => {
 
   if (hmacHeader === digest) {
 
+    const orderData = JSON.parse(data);
+    console.log(orderData);
+    
     await db.orders.create({
       data: {
         json: data
