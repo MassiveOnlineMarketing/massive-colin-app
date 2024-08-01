@@ -2,7 +2,7 @@ import { Resend } from "resend";
 
 const resend = new Resend(process.env.RESEND_API_KEY);
 
-const domain = process.env.WEBSITE_URL;
+const domain = process.env.DASCHBOARD_URL;
 const NO_REPLY_EMAIL = "CARP Audio <noreply@carpaudio.com>";
 
 export const sendTwoFactorTokenEmail = async (
