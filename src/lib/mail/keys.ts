@@ -596,6 +596,10 @@ prodcutHtml
 export const sendKeysToNewCustomer = async (customerName: string, customerEmail: string, keys: ServerKey[]) => {
   const registerLink = `${domain}/auth/register?email=${customerEmail}`
 
+  console.log('customerEmail: ', customerEmail)
+  console.log('customerName: ', customerName)
+  console.log('keys: ', keys)
+
   const prodcutHtml = keys.map(key => {
     return `
       <div

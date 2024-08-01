@@ -35,7 +35,7 @@ const ClientPage = () => {
       }
     ]
     
-    sendKeysToExistingCustomer(
+    sendKeysToNewCustomer(
       'Albert Einstein', 
       'carpaudio@gmail.com',
       // @ts-ignore
