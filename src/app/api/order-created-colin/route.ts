@@ -4,7 +4,7 @@ import { NextRequest } from 'next/server';
 
 import { IShopifyOrder, ServerKey, ServerResponse } from './types';
 import { db } from "@/lib/db"
-import { sendKeysEmail, sendKeysEmailWithAccount } from "@/lib/mail/keys"
+import { sendKeysToExistingCustomer, sendKeysToNewCustomer } from "@/lib/mail/keys"
 
 
 const BUNDLE_PRODUCT_IDS: { [key: number]: number[] } = {
@@ -28,6 +28,7 @@ const SEEDS: { [key: number]: string } = {
 
 const SHOPIFY_WEBHOOK_SECRET = process.env.SHOPIFY_WEBHOOK_SECRET || '';
 const CPP_API_URL = process.env.CPP_API || '';
+const TEMP_EMAIL = 'carpaudio@gmail.com'
 
 export const POST = async (req: NextRequest) => {
   const data = await req.text();
@@ -118,11 +119,13 @@ export const POST = async (req: NextRequest) => {
     if (newCustomer) {
       // Send welcome email with keys
       console.log('🟡 Send keys with account');
-      sendKeysEmailWithAccount(email, customerName, productKeys)
+      // sendKeysToNewCustomer(email, customerName, productKeys)
+      sendKeysToNewCustomer(TEMP_EMAIL, customerName, productKeys)
     } else {
       // Send keys
       console.log('🟡 Send keys without account');
-      sendKeysEmail(email, customerName, productKeys);
+      // sendKeysToExistingCustomer(email, customerName, productKeys);
+      sendKeysToExistingCustomer(TEMP_EMAIL, customerName, productKeys);
     }
 
 

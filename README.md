@@ -13,6 +13,23 @@ npx prisma studio
 
 Tailwind css 
 
+# TODO: 
+Colin:
+- Domain koppelen
+- Email dmac record toe voegen
++ Favicon
+- E-mails lay-out 
+
+Samen:
+- Ui changes
+
+Ik:
++ Login fields
+- Meta data
++ Cpp server altijd online houden
+
+- Testen met paar orders
+
 
 
 
@@ -24,7 +41,7 @@ Tailwind css
 - DB url in env file
 
 
-# install 
+# install prisma  
 - npm i -D prisma
 - npx prisma init
 - npm i @prisma/client
@@ -33,3 +50,4 @@ Tailwind css
 
 - npm install @prisma/client @auth/prisma-adapter
 - npm install prisma --save-dev
+

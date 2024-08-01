@@ -37,7 +37,7 @@ const CardGrid = ({ keys }: CardGridProps) => {
             return productKeys.map((productKey, index) => (
               <div key={`${productKey}-${index}`} className={`relative  flex flex-col gap-4 rounded-3xl p-3 h-[300px] ${owned ? 'bg-[#1e211f]' : 'bg-[#1e211f]/30'}`}>
                 <h2 className={`text-[#FFFFFF] text-2xl text-center ${oswald.className} `}>{product.name}</h2>
-                <Image src={product.imgUrl as string} alt="product" width={product.width} height={product.height} className={`h-[130px] w-fit mx-auto `} />
+                <Image src={product.imgUrl as string} alt="product" width={product.width} height={product.height} className={`h-[130px] w-fit mx-auto shadow-md`} />
                 {/* Render a Key component for each set of keys */}
                 <Key key={`key-${productId}-${index}`} keyOne={productKeys[index].key1} keyTwo={productKeys[index].key2} />
                 {

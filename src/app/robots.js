@@ -5,6 +5,5 @@ export default function robots() {
         allow: '/',
         disallow: '/private/',
       },
-      sitemap: 'https://massiveonlinemarketing.nl/sitemap.xml',
     }
   }

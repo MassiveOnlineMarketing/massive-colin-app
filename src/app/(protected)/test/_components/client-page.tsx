@@ -4,6 +4,7 @@ import React from 'react'
 import axios from 'axios'
 import { generateKeys } from './actions';
 import { deleteAllKeys } from '@/data/key';
+import { sendKeysToExistingCustomer, sendKeysToNewCustomer } from '@/lib/mail/keys';
 
 const ClientPage = () => {
 
@@ -22,10 +23,31 @@ const ClientPage = () => {
   const handleDeleteAllKeys = async () => {
     await deleteAllKeys()
   }
+
+  const handleSendEmail = async () => {
+    const keys = [
+      {
+        id: 'clyx6hcg8000y9979yruur0yz',
+        key1: 'trespaan@gmail.com',
+        key2: 'A3A1D11629D8B8EA',
+        productId: '8818545066326',
+        customerId: 'clxusvwwd00gl13q15gayy2mv'
+      }
+    ]
+    
+    sendKeysToExistingCustomer(
+      'Albert Einstein', 
+      'carpaudio@gmail.com',
+      // @ts-ignore
+      keys
+    )
+  }
+
   return (
     <div>
       ClientPage
       <button onClick={handleButtonClick}>Click me</button>  
+      <button onClick={handleSendEmail}>send email</button>
       {/* <button onClick={handleDeleteAllKeys}>Delete all keys</button> */}
     </div>
   )

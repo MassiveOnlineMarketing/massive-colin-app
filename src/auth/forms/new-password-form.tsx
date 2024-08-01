@@ -70,7 +70,7 @@ export const NewPasswordForm = () => {
                 <FormItem>
                   <FormControl>
                     <Input
-                      icon={<KeyIcon />}
+                      Icon={KeyIcon}
                       {...field}
                       disabled={isPending}
                       placeholder="******"

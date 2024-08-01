@@ -24,7 +24,7 @@ const Card = ({ productId, productKeys, owned, index }: CardProps) => (
   <div key={`${productId}-${index}`} className={`relative flex flex-col gap-4 rounded-3xl p-3 h-[300px] w-[300px] shadow-xl ${owned ? 'bg-[#1e211f]' : 'bg-[#1e211f]/30'}`}>
     <h2 className={`text-2xl text-center ${oswald.className} ${owned ? 'text-[#FFFFFF]' :"text-[#FFFFFF]/50"}`}>{getProduct(productId).name}</h2>
     <Link target="_blank" href={getProduct(productId).storeLink}>
-      <Image src={getProduct(productId).imgUrl} alt="product" width={getProduct(productId).width} height={getProduct(productId).height} className={`h-[130px] w-fit mx-auto ${owned ? '' : 'opacity-40'}`} />
+      <Image src={getProduct(productId).imgUrl} alt="product" width={getProduct(productId).width} height={getProduct(productId).height} className={`h-[130px] w-fit mx-auto shadow-lg ${owned ? '' : 'opacity-40'}`} />
     </Link>
     {productKeys.length > 1 ? (
       <Key key={`key-${productId}-${index}`} keyOne={productKeys[index].key1} keyTwo={productKeys[index].key2} />

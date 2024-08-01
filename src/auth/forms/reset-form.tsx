@@ -13,7 +13,7 @@ import {
   FormField,
   FormItem,
   FormLabel,
-  FormMessage,  
+  FormMessage,
 } from "@/components/ui/form";
 import { CardWrapper } from "./card-wrapper"
 import { Button } from "@/components/ui/button";
@@ -55,7 +55,7 @@ export const ResetForm = () => {
       backButtonHref="/auth/login"
     >
       <Form {...form}>
-        <form 
+        <form
           onSubmit={form.handleSubmit(onSubmit)}
           className="space-y-6"
         >
@@ -67,7 +67,7 @@ export const ResetForm = () => {
                 <FormItem>
                   <FormControl>
                     <Input
-                    icon={<Mail />}
+                      Icon={Mail}
                       {...field}
                       disabled={isPending}
                       placeholder="john.doe@example.com"

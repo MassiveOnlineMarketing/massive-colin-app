@@ -67,7 +67,7 @@ export const RegisterForm = () => {
                 <FormItem>
                   <FormControl>
                     <Input
-                      icon={<Mail />}
+                      Icon={Mail}
                       {...field}
                       disabled={isPending}
                       placeholder="john.doe@example.com"
@@ -85,7 +85,7 @@ export const RegisterForm = () => {
                 <FormItem>
                   <FormControl>
                     <Input
-                      icon={<KeyIcon />}
+                      Icon={KeyIcon}
                       {...field}
                       disabled={isPending}
                       placeholder="******"
