@@ -128,6 +128,10 @@ export const sendKeysEmailWithAccount = async (
  * @param keys - An array of ServerKey objects representing the keys to be sent.
  */
 export const sendKeysToExistingCustomer = async (customerName: string, customerEmail: string, keys: ServerKey[]) => {
+  console.log('customerEmail: ', customerEmail)
+  console.log('customerName: ', customerName)
+  console.log('keys: ', keys)
+  
   const prodcutHtml = keys.map(key => {
     return `
       <div
