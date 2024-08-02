@@ -5,6 +5,7 @@ import { NextRequest } from 'next/server';
 import { IShopifyOrder, ServerKey, ServerResponse } from './types';
 import { db } from "@/lib/db"
 import { sendKeysToExistingCustomer, sendKeysToNewCustomer } from "@/lib/mail/keys"
+import { cppApiErrorEmail } from '@/lib/mail/apiErrors';
 
 
 const BUNDLE_PRODUCT_IDS: { [key: number]: number[] } = {
@@ -55,7 +56,7 @@ export const POST = async (req: NextRequest) => {
   // const orderData: IShopifyOrder = await req.json();
   const { customer: { email }, customer: { first_name }, customer: { last_name }, order_number, line_items } = orderData;
     const customerName = `${first_name} ${last_name}`
-    console.log('🟢 Processing order: ', order_number)
+    console.log('🟡 Processing order: ', order_number)
     console.log('url', CPP_API_URL)
 
     let newCustomer = false
@@ -98,6 +99,7 @@ export const POST = async (req: NextRequest) => {
 
       if (keysToAdd === null) {
         // TODO: handle error something went wrong email, and mail to carp audio to fix
+        console.error('keysToAdd is null')
         return;
       }
 
@@ -110,6 +112,7 @@ export const POST = async (req: NextRequest) => {
     })
     if (!res) {
       // TODO: handle error something went wrong email, and mail to carp audio to fix
+      console.error('create keys db res is null')
       return
     }
 
@@ -156,7 +159,8 @@ async function processProductKeys(email: string, productIds: number[], order_num
     console.log('key: ', key);
 
     if (key === null) {
-      // TODO: handle error something went wrong email, and mail to carp audio to fix
+      // TODO: Email to customer?
+      await cppApiErrorEmail('key is null', 'key is null', order_number)
       return null;
     }
 
@@ -195,12 +199,14 @@ const generateKey = async (email: string, seed: string, order_number: number) =>
       return data.generatedKey
     } else {
       console.error('error: ', data.message, order_number)
-      // TODO: handle error something went wrong email, and mail to carp audio to fix
+      // TODO: sen email to customer?
+      await cppApiErrorEmail(data.message, JSON.stringify(data), order_number)
       return null
     }
   } catch (error) {
     console.error('error: ', error, order_number)
-    // TODO: handle error something went wrong email, and mail to carp audio to fix
+    // TODO: sen email to customer?
+    await cppApiErrorEmail('catch error', JSON.stringify(error), order_number)
     return null
   }
 }
