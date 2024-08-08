@@ -55,8 +55,8 @@ export const PRODUCTS: ProductDictionary = {
     'storeLink': 'https://carpaudio.com/products/resonote',
     'imgUrl': 'https://cdn.shopify.com/s/files/1/0771/9249/5446/files/Resonote_Init.png?v=1719348325',
     'addToCartUrl': 'https://www.carpaudio.com/cart/add?id=47276787073366&quantity=1',
-    'width': 800,
-    'height': 600,
+    'width': 910,
+    'height': 459,
   },
   '8536354226518': {
     'name': 'Reeferb',
@@ -64,8 +64,8 @@ export const PRODUCTS: ProductDictionary = {
     'storeLink': 'https://carpaudio.com/products/reeferb',
     'imgUrl': 'https://cdn.shopify.com/s/files/1/0771/9249/5446/files/Reeferb_Init.png?v=1719348324',
     'addToCartUrl': 'https://www.carpaudio.com/cart/add?id=47028435910998&quantity=1',
-    'width': 910,
-    'height': 459,
+    'width': 250,
+    'height': 484,
   },
   '8492913262934': {
     'name': "Stereo Pusher",

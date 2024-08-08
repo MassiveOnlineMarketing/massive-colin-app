@@ -2,7 +2,7 @@
 
 import * as z from "zod";
 import { useForm } from "react-hook-form";
-import { useState, useTransition } from "react";
+import { useState } from "react";
 import { useSearchParams } from "next/navigation";
 import { zodResolver } from "@hookform/resolvers/zod";
 import Link from "next/link";
@@ -17,6 +17,7 @@ import { FormSuccess } from "./form-success";
 import { login } from "../actions/login";
 import { KeyIcon, Mail } from "lucide-react";
 import { LoadingSpinner } from "@/components/ui/loading-spinner";
+import { ExclamationCircleIcon } from "@heroicons/react/20/solid";
 
 export const LoginForm = () => {
   const searchParams = useSearchParams();
@@ -26,7 +27,7 @@ export const LoginForm = () => {
 
   const [error, setError] = useState<string | undefined>("");
   const [success, setSuccess] = useState<string | undefined>("");
-  const [isPending, startTransition] = useTransition();
+  const [ isPending, setIsPending ] = useState<boolean>(false);
 
   const form = useForm<z.infer<typeof LoginSchema>>({
     resolver: zodResolver(LoginSchema),
@@ -37,6 +38,7 @@ export const LoginForm = () => {
   });
 
   const onSubmit = (values: z.infer<typeof LoginSchema>) => {
+    setIsPending(true);
     setError("");
     setSuccess("");
 
@@ -45,7 +47,10 @@ export const LoginForm = () => {
         setError(data?.error);
         // setSuccess(data?.);
       })
-
+      .finally(() => {
+        setIsPending(false);
+      });
+    
   };
 
   return (
@@ -121,6 +126,11 @@ export const LoginForm = () => {
               Forgot password?
             </Link>
           </Button>
+
+          <div className="flex flex-col font-normal text-sm text-gray-300">
+            <ExclamationCircleIcon className="h-6 w-6 inline-block mx-auto text-wite rotate-180" />
+            <p className="text-center">You’ll receive an account when making your first order.</p>
+          </div>
         </form>
       </Form>
     </CardWrapper>

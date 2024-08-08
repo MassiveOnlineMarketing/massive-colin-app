@@ -17,20 +17,20 @@ const Topbar = ({ userName, userEmail }: TopbarProps) => {
   return (
     <>
       <div className="relative flex">
-        <Link className="mx-auto py-8 w-[120px]"  href='https://carpaudio.com/'>
+        <Link className="mx-auto pt-8 w-20"  href='https://carpaudio.com/'>
           <CarpAudioLogoWhiteSvg />
         </Link>
-        <div className="absolute top-1/2 -translate-y-1/2 right-0">
+        <div className="absolute bottom-0 right-0 flex items-center justify-center h-10 ">
           <LogoutButton />
         </div>
       </div>
-      <div className="flex flex-col gap-8 pb-8">
+      <div className="flex flex-col gap-4 pb-8">
         <p className={`text-4xl ${oswald.className}`}>Welcome {userName},</p>
         <div className="flex flex-col md:flex-row md:items-center justify-between">
           <div className="px-4 py-2 bg-white text-gray-900 rounded-full w-fit">
             <p className={`${inter.className}`}>{userEmail}</p>
           </div>
-          <p className={`text-5xl ${oswald.className}`}>My Plugins</p>
+          <p className={`text-5xl ${oswald.className}`}>Your Licenses</p>
         </div>
       </div>
     </>

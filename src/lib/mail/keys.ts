@@ -34,8 +34,8 @@ const template = `
     style="width: 100%; height: 100%; margin:0; padding: 36px;  background-image: linear-gradient(to bottom, #181C1A, #0D0D0D); font-family:Arial,Helvetica Neue,Helvetica,sans-serif;">
     <div style="max-width: 680px; margin: 0 auto 0 auto;">
       <div style="width: 100%; display: flex;">
-        <img alt="Logo" height="auto" style="max-width:80px;  margin:0 auto 0 auto;"
-          src="https://carpaudio.com/cdn/shop/files/CARP_Audio_Logo_Website.png?v=1707150007&width=130" width="80">
+        <img alt="Logo" height="auto" style="max-width:160px;  margin:0 auto 0 auto;"
+          src="https://carpaudio.com/cdn/shop/files/CARP_Audio_Logo_Website.png?v=1707150007&width=130" width="160">
       </div>
       <div style="padding-top: 60px; color: #fff; text-align: center;">
         <p style="color:#fff;font-size: 18px; margin: 0;">Hi, ${customerName}</p>
@@ -46,7 +46,7 @@ const template = `
       </div>
 
       <div style="margin: 0 auto 0 auto; width: fit-content; margin: 32px 0;">
-        <div style="display: inline-flex; flex-direction: row; flex-wrap: wrap; gap: 16px; justify-content: center;">
+        <div style="flex-direction: row; flex-wrap: wrap; gap: 16px; justify-content: center; display: inline-flex; ">
         `
         +
         productCardHtml(keys)
@@ -120,8 +120,8 @@ export const sendKeysToNewCustomer = async (customerName: string, customerEmail:
     style="width: 100%; height: 100%; margin:0; padding: 36px;  background-image: linear-gradient(to bottom, #181C1A, #0D0D0D); font-family:Arial,Helvetica Neue,Helvetica,sans-serif;">
     <div style="max-width: 680px; margin: 0 auto 0 auto;">
       <div style="width: 100%; display: flex;">
-        <img alt="Logo" height="auto" style="max-width:80px;  margin:0 auto 0 auto;"
-          src="https://carpaudio.com/cdn/shop/files/CARP_Audio_Logo_Website.png?v=1707150007&width=130" width="80">
+        <img alt="Logo" height="auto" style="max-width:160px;  margin:0 auto 0 auto;"
+          src="https://carpaudio.com/cdn/shop/files/CARP_Audio_Logo_Website.png?v=1707150007&width=130" width="160">
       </div>
       <div style="padding-top: 60px; color: #fff; text-align: center;">
         <p style="color: #fff; font-size: 18px; margin: 0;">Hi, ${customerName}</p>
@@ -132,7 +132,7 @@ export const sendKeysToNewCustomer = async (customerName: string, customerEmail:
       </div>
 
       <div style="margin: 0 auto 0 auto; width: fit-content; margin: 32px 0;">
-        <div style="display: inline-flex; flex-direction: row; flex-wrap: wrap; gap: 16px; justify-content: center;">
+        <div style="flex-direction: row; flex-wrap: wrap; gap: 16px; justify-content: center; display: inline-flex; ">
         `
         +
         productCardHtml(keys)
@@ -188,7 +188,7 @@ function productCardHtml(keys: ServerKey[]) {
         <div
           style="color: #fff; border-radius: 1.5rem; padding: 0.75rem; height: 300px; width: 300px; box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1); background-color: #1e211f;">
           <h2 style="font-size: 1.5rem; text-align: center; color: #FFFFFF; margin: 0 0 16px 0;">${PRODUCTS[key.productId].name}</h2>
-          <div style="display: flex; justify-content: center; margin-bottom: 16px;" >
+          <div style="display: flex; justify-content: center; margin-bottom: 32px;" >
             <img alt="product" loading="lazy" width="425" height="400" decoding="async"
               style="height: 130px; width: fit-content; margin-left: auto; margin-right: auto; color: transparent;"
               src=${PRODUCTS[key.productId].imgUrl}>
