@@ -46,7 +46,7 @@ const template = `
       </div>
 
       <div style="margin: 0 auto 0 auto; width: fit-content; margin: 32px 0;">
-        <div style="flex-direction: row; flex-wrap: wrap; gap: 16px; justify-content: center; display: inline-flex; ">
+        <div style="flex-direction: row; flex-wrap: wrap; gap: 16px; justify-content: center; display: flex; ">
         `
         +
         productCardHtml(keys)
@@ -132,7 +132,7 @@ export const sendKeysToNewCustomer = async (customerName: string, customerEmail:
       </div>
 
       <div style="margin: 0 auto 0 auto; width: fit-content; margin: 32px 0;">
-        <div style="flex-direction: row; flex-wrap: wrap; gap: 16px; justify-content: center; display: inline-flex; ">
+        <div style="flex-direction: row; flex-wrap: wrap; gap: 16px; justify-content: center; display: flex; ">
         `
         +
         productCardHtml(keys)
