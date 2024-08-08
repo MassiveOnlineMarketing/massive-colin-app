@@ -40,13 +40,13 @@ const template = `
       <div style="padding-top: 60px; color: #fff; text-align: center;">
         <p style="color:#fff;font-size: 18px; margin: 0;">Hi, ${customerName}</p>
         <p style="color:#fff;font-size: 24px; margin: 0;"><strong>Your keys are ready!</strong></p>
-        <p>You can view an overview of all your owned plugins and licenses in the <a href="${domain}"
+        <p style="color: #fff;">You can view an overview of all your owned plugins and licenses in the <a href="${domain}"
             target="_blank" style="text-decoration: underline; color: #22c55e;" rel="noopener">License
             Dashboard</a>.</span></p>
       </div>
 
       <div style="margin: 0 auto 0 auto; width: fit-content; margin: 32px 0;">
-        <div style="flex-direction: row; flex-wrap: wrap; gap: 16px; justify-content: center; display: flex; ">
+        <div style="display: grid; gap:16px; grid-templte-columns: repeat(2, 1fr);">
         `
         +
         productCardHtml(keys)
@@ -126,13 +126,13 @@ export const sendKeysToNewCustomer = async (customerName: string, customerEmail:
       <div style="padding-top: 60px; color: #fff; text-align: center;">
         <p style="color: #fff; font-size: 18px; margin: 0;">Hi, ${customerName}</p>
         <p style="color: #fff; font-size: 24px; margin: 0;"><strong>Your keys are ready!</strong></p>
-        <p>You can view an overview of all your owned plugins and licenses in the <a href="${registerLink}"
+        <p style="color: #fff;">You can view an overview of all your owned plugins and licenses in the <a href="${registerLink}"
             target="_blank" style="text-decoration: underline; color: #22c55e;" rel="noopener">License
             Dashboard</a>.</span></p>
       </div>
 
       <div style="margin: 0 auto 0 auto; width: fit-content; margin: 32px 0;">
-        <div style="flex-direction: row; flex-wrap: wrap; gap: 16px; justify-content: center; display: flex; ">
+        <div style="display: grid; gap:16px; ">
         `
         +
         productCardHtml(keys)
