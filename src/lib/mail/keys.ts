@@ -28,6 +28,19 @@ const template = `
     <title></title>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
+    <style>
+        @media only screen and (max-width: 660px) {
+            table, tbody, tr {
+                display: block;
+                width: 100%;
+            }
+            td {
+                display: block;
+                width: 100%;
+                box-sizing: border-box;
+            }
+        }
+    </style>
   </head>
 
   <body class="body"
@@ -46,18 +59,27 @@ const template = `
       </div>
 
       <div style="margin: 0 auto 0 auto; width: fit-content; margin: 32px 0;">
-        <div style="display: grid; gap:16px; grid-templte-columns: repeat(2, 1fr);">
-        `
-        +
-        productCardHtml(keys)
-        +
-        `
-        </div>
+        <table style="width: 100%; border-collapse: collapse;">
+          ${keys.map((key, index) => {
+            if (index % 2 === 0) {
+              return `
+                <tr>
+                  <td style="padding: 8px;">
+                    ${productCardHtml(keys[index])}
+                  </td>
+                  <td style="padding: 8px;">
+                    ${keys[index + 1] ? productCardHtml(keys[index + 1]) : ''}
+                  </td>
+                </tr>
+              `;
+            }
+          }).join('')}
+        </table>
       </div>
 
       <div style="color: #fff; text-align: center;">
         <p style="color:#fff;font-size: 24px; margin: 0; padding: 10px 0;"><strong>License(s) added to your Dashboard!</strong></p>
-        <p style="color:#fff;font-size: 12px; margin: 0; padding-top: 10px;">All your plugin licenses are automatically added to your dashboard.</p>
+        <p style="color:#fff;font-size: 12px; margin: 0; padding-top: 10px;">All your purchased licenses are automatically added to your dashboard.</p>
         <p style="color:#fff;font-size: 12px; margin: 0; padding-bottom: 20px;">Login to view them all:</p>
         <a href="${domain}" target="_blank"
         style="background-color:#ffffff;border-bottom:0px solid transparent;border-left:0px solid transparent;border-radius:50px;border-right:0px solid transparent;border-top:0px solid transparent;color:#000000;display:inline-block;font-family:Arial, Helvetica Neue, Helvetica, sans-serif;font-size:16px;font-weight:undefined;mso-border-alt:none;padding:16px 40px ;text-align:center;text-decoration:none;width:auto;word-break:keep-all;"><span
@@ -114,6 +136,19 @@ export const sendKeysToNewCustomer = async (customerName: string, customerEmail:
     <title></title>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
+    <style>
+        @media only screen and (max-width: 660px) {
+            table, tbody, tr {
+                display: block;
+                width: 100%;
+            }
+            td {
+                display: block;
+                width: 100%;
+                box-sizing: border-box;
+            }
+        }
+    </style>
   </head>
 
   <body class="body"
@@ -132,18 +167,27 @@ export const sendKeysToNewCustomer = async (customerName: string, customerEmail:
       </div>
 
       <div style="margin: 0 auto 0 auto; width: fit-content; margin: 32px 0;">
-        <div style="display: grid; gap:16px; ">
-        `
-        +
-        productCardHtml(keys)
-        +
-        `
-        </div>
+        <table table style="width: 100%; border-collapse: collapse;">
+          ${keys.map((key, index) => {
+            if (index % 2 === 0) {
+              return `
+                <tr>
+                  <td style="padding: 8px;">
+                    ${productCardHtml(keys[index])}
+                  </td>
+                  <td style="padding: 8px;">
+                    ${keys[index + 1] ? productCardHtml(keys[index + 1]) : ''}
+                  </td>
+                </tr>
+              `;
+            }
+          }).join('')}
+        </table>
       </div>
 
       <div style="color: #fff; text-align: center;">
         <p style="color: #fff; font-size: 24px; margin: 0; padding: 10px 0;"><strong>License(s) added to your Dashboard!</strong></p>
-        <p style="color: #fff; font-size: 12px; margin: 0; padding-top: 10px;">All your plugin licenses are automatically added to your dashboard.</p>
+        <p style="color: #fff; font-size: 12px; margin: 0; padding-top: 10px;">All your purchased licenses are automatically added to your dashboard.</p>
         <p style="color: #fff; font-size: 12px; margin: 0; padding-bottom: 20px;">Login to view them all:</p>
         <a href="${registerLink}" target="_blank"
         style="background-color:#ffffff;border-bottom:0px solid transparent;border-left:0px solid transparent;border-radius:50px;border-right:0px solid transparent;border-top:0px solid transparent;color:#000000;display:inline-block;font-family:Arial, Helvetica Neue, Helvetica, sans-serif;font-size:16px;font-weight:undefined;mso-border-alt:none;padding:16px 40px ;text-align:center;text-decoration:none;width:auto;word-break:keep-all;"><span
@@ -181,10 +225,8 @@ export const sendKeysToNewCustomer = async (customerName: string, customerEmail:
 }
 
 
-function productCardHtml(keys: ServerKey[]) {
-  return (
-    keys.map(key => {
-      return `
+function productCardHtml(key: ServerKey) {
+      return ( `
         <div
           style="color: #fff; border-radius: 1.5rem; padding: 0.75rem; height: 300px; width: 300px; box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1); background-color: #1e211f;">
           <h2 style="font-size: 1.5rem; text-align: center; color: #FFFFFF; margin: 0 0 16px 0;">${PRODUCTS[key.productId].name}</h2>
@@ -208,6 +250,5 @@ function productCardHtml(keys: ServerKey[]) {
           </div>
         </div>
       `
-    }).join('')
   )
 }

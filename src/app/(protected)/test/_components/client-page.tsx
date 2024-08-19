@@ -5,6 +5,7 @@ import axios from 'axios'
 import { generateKeys } from './actions';
 import { deleteAllKeys } from '@/data/key';
 import { sendKeysToExistingCustomer, sendKeysToNewCustomer } from '@/lib/mail/keys';
+import { getKeysByOrderId } from '@/app/admin/actions';
 
 const ClientPage = () => {
 
@@ -27,13 +28,62 @@ const ClientPage = () => {
   const handleSendEmail = async () => {
     const keys = [
       {
-        id: 'clyx6hcg8000y9979yruur0yz',
-        key1: 'trespaan@gmail.com',
-        key2: 'A3A1D11629D8B8EA',
-        productId: '8818545066326',
-        customerId: 'clxusvwwd00gl13q15gayy2mv'
+          "id": "clzlmiwbp000342zp5x9uq9a6",
+          "key1": "retro.colin@gmail.com",
+          "key2": "0B8A40A772AD108A",
+          "productId": "8612997890390",
+          "customerId": "clzllu1gm0001urfjwna25svi",
+          "orderId": "clzlmivcw000242zpqz31ygw1"
+      },
+      {
+          "id": "clzlmiwbp000442zp7prma53c",
+          "key1": "retro.colin@gmail.com",
+          "key2": "35A30004018A3D86",
+          "productId": "8651898257750",
+          "customerId": "clzllu1gm0001urfjwna25svi",
+          "orderId": "clzlmivcw000242zpqz31ygw1"
+      },
+      {
+          "id": "clzlmiwbp000542zpvix8uhd2",
+          "key1": "retro.colin@gmail.com",
+          "key2": "1CEF5DAC5095ABB2",
+          "productId": "8492908020054",
+          "customerId": "clzllu1gm0001urfjwna25svi",
+          "orderId": "clzlmivcw000242zpqz31ygw1"
+      },
+      {
+          "id": "clzlmiwbp000642zpkees0f6v",
+          "key1": "retro.colin@gmail.com",
+          "key2": "BFBDB3E2E39A5BF1",
+          "productId": "8492913262934",
+          "customerId": "clzllu1gm0001urfjwna25svi",
+          "orderId": "clzlmivcw000242zpqz31ygw1"
+      },
+      {
+          "id": "clzlmiwbp000742zplrg848de",
+          "key1": "retro.colin@gmail.com",
+          "key2": "97E13D394CD60F7D",
+          "productId": "8703626576214",
+          "customerId": "clzllu1gm0001urfjwna25svi",
+          "orderId": "clzlmivcw000242zpqz31ygw1"
+      },
+      {
+          "id": "clzlmiwbp000842zpl7twib4p",
+          "key1": "retro.colin@gmail.com",
+          "key2": "E893A707267793A3",
+          "productId": "8818545066326",
+          "customerId": "clzllu1gm0001urfjwna25svi",
+          "orderId": "clzlmivcw000242zpqz31ygw1"
+      },
+      {
+          "id": "clzlmiwbp000942zpw19buub5",
+          "key1": "retro.colin@gmail.com",
+          "key2": "F2DF9433A314809C",
+          "productId": "8536354226518",
+          "customerId": "clzllu1gm0001urfjwna25svi",
+          "orderId": "clzlmivcw000242zpqz31ygw1"
       }
-    ]
+  ]
     
     sendKeysToExistingCustomer(
       'Albert Einstein', 
@@ -43,11 +93,17 @@ const ClientPage = () => {
     )
   }
 
+  const handleGetKeysbyOrderId = async () => {
+    const keys = await getKeysByOrderId('clzlmivcw000242zpqz31ygw1')
+    console.log(keys)
+  }
+
   return (
-    <div>
+    <div className='flex flex-col'>
       ClientPage
       <button onClick={handleButtonClick}>Click me</button>  
       <button onClick={handleSendEmail}>send email</button>
+      <button onClick={handleGetKeysbyOrderId}>get keys by order id</button>
       {/* <button onClick={handleDeleteAllKeys}>Delete all keys</button> */}
     </div>
   )
