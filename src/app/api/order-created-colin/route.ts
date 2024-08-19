@@ -122,13 +122,13 @@ export const POST = async (req: NextRequest) => {
     if (newCustomer) {
       // Send welcome email with keys
       console.log('🟡 Send keys with account');
-      // sendKeysToNewCustomer(email, customerName, productKeys)
-      await sendKeysToNewCustomer(customerName, TEMP_EMAIL, productKeys)
+      sendKeysToNewCustomer(email, customerName, productKeys)
+      // await sendKeysToNewCustomer(customerName, TEMP_EMAIL, productKeys)
     } else {
       // Send keys
       console.log('🟡 Send keys without account');
-      // sendKeysToExistingCustomer(email, customerName, productKeys);
-      await sendKeysToExistingCustomer(customerName, TEMP_EMAIL, productKeys);
+      sendKeysToExistingCustomer(email, customerName, productKeys);
+      // await sendKeysToExistingCustomer(customerName, TEMP_EMAIL, productKeys);
     }
 
 

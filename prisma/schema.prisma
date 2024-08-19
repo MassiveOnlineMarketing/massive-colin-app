@@ -23,6 +23,7 @@ model User {
   email    String?   @unique
   image    String?
   password String?
+  oldUser  Boolean   @default(false)
   role     UserRole  @default(USER)
   accounts Account[]
   keys     Key[]
