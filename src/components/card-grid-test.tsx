@@ -35,7 +35,7 @@ const Card = ({ productId, productKeys, owned, index }: CardProps) => (
     )}
 
     {!owned && (
-      <div className={`mt-auto h-[78px] rounded-[12px] px-4 py-3 flex justify-center items-center ${owned ? 'bg-[#262928]' : 'bg-[#262928]/30'}`}>
+      <div className={`rounded-full w-fit h-fit m-auto px-6 py-3 flex justify-center items-center ${owned ? 'bg-[#262928]' : 'bg-[#262928]/30'}`}>
         <Link target="_blank" href={getProduct(productId).addToCartUrl}>Add to cart</Link>
       </div>
     )}

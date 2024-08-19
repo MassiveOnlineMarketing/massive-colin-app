@@ -3,7 +3,6 @@ import { getUserByEmail } from "@/data/user";
 import { auth } from "@/auth/auth";
 
 import Topbar from "@/components/topbar";
-import CardGrid from "@/components/card-grid";
 import CardGridTest from "@/components/card-grid-test";
 import Downloads from "@/components/downloads";
 

@@ -13,22 +13,10 @@ npx prisma studio
 
 Tailwind css 
 
-# TODO: 
-Colin:
-- Domain koppelen
-- Email dmac record toe voegen
-+ Favicon
-- E-mails lay-out 
 
-Samen:
-- Ui changes
-
-Ik:
-+ Login fields
-- Meta data
-+ Cpp server altijd online houden
-
-- Testen met paar orders
+# Product toevoegen
+control p product-constants
+contorl p route /order-created-colin
 
 
 
