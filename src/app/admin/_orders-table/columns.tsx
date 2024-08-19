@@ -101,9 +101,12 @@ export const columns = (): ColumnDef<OrderDTO>[] => [
       header: ({ column }) => (
         <StandardHeaderCell sorting={true} column={column} title="Keys" />
       ),
-      cell: ({ row: { original: { keys } } }) => (
-        <StandardRowCell value={keys[0].key1} highlight={true} />
-      ),
+      cell: ({ row: { original: { keys } } }) => {
+        if (keys.length === 0) {
+          return <StandardRowCell value="No keys" />;
+        }
+        return <StandardRowCell value={keys.length} />;
+      }
       // sortingFn: positionSortingFn,
     },
   ];

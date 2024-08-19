@@ -230,9 +230,9 @@ function productCardHtml(key: ServerKey) {
         <div
           style="color: #fff; border-radius: 1.5rem; padding: 0.75rem; height: 300px; width: 300px; box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1); background-color: #1e211f;">
           <h2 style="font-size: 1.5rem; text-align: center; color: #FFFFFF; margin: 0 0 16px 0;">${PRODUCTS[key.productId].name}</h2>
-          <div style="display: flex; justify-content: center; margin-bottom: 32px;" >
-            <img alt="product" loading="lazy" width="425" height="400" decoding="async"
-              style="height: 130px; width: fit-content; margin-left: auto; margin-right: auto; color: transparent;"
+          <div style="display: flex; justify-content: center; margin-bottom: 32px; width: 100%;" >
+            <img alt="product" loading="lazy" height="400" decoding="async"
+              style="height: 130px; width: fit-content; margin-left: auto; margin-right: auto; color: transparent; object-fit: contain;"
               src=${PRODUCTS[key.productId].imgUrl}>
           </div>
           <div
