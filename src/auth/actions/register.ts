@@ -33,7 +33,7 @@ export const register = async (values: z.infer<typeof RegisterSchema>) => {
         }
       })
     }
-    return { success: "Account created successfully! <br> Click <a href='http://localhost:3000/auth/login'>here</a> to login"};
+    return { success: "Account created successfully! <br> Click <a href='/auth/login'>here</a> to login"};
   }
 
   await db.user.create({
@@ -43,7 +43,7 @@ export const register = async (values: z.infer<typeof RegisterSchema>) => {
     },
   });
 
-  return { success: "Account created successfully! <br> Click <a href='http://localhost:3000/auth/login'>here</a> to login"};
+  return { success: "Account created successfully! <br> Click <a href='/auth/login'>here</a> to login"};
 };
 
 
