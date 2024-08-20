@@ -57,12 +57,12 @@ export const POST = async (req: NextRequest) => {
   const { customer: { email }, customer: { first_name }, customer: { last_name }, order_number, line_items } = orderData;
     const customerName = `${first_name} ${last_name}`
     console.log('🟡 Processing order: ', order_number)
-    console.log('url', CPP_API_URL)
 
     let newCustomer = false
     //* Check if we already have an user with this email
     let customer = await db.user.findUnique({ where: { email } })
     if (!customer) {
+      console.log('🟡 Creating customer')
       customer = await db.user.create({
         data: {
           email,
@@ -73,6 +73,7 @@ export const POST = async (req: NextRequest) => {
     }
 
     //* Create order
+    console.log('🟡 Creating order')
     const order = await db.order.create({
       data: {
         customerId: customer.id,
