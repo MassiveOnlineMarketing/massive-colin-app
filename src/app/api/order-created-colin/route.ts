@@ -154,10 +154,11 @@ export const POST = async (req: NextRequest) => {
  */
 async function processProductKeys(email: string, productIds: number[], order_number: number, customerId: string, orderId: string): Promise<ServerKey[] | null> {
   let productKeys: ServerKey[] = [];
+  console.log('🟡 Processing product keys: ', productIds);
   for (const productId of productIds) {
     const seed = SEEDS[productId];
     const key = await generateKey(email, seed, order_number);
-    console.log('key: ', key);
+    console.log('🟡 key: ', key, 'productId: ', productId);
 
     if (key === null) {
       // TODO: Email to customer?
@@ -199,13 +200,13 @@ const generateKey = async (email: string, seed: string, order_number: number) =>
 
       return data.generatedKey
     } else {
-      console.error('error: ', data.message, order_number)
+      console.log('error: ', data.message, order_number)
       // TODO: sen email to customer?
       await cppApiErrorEmail(data.message, JSON.stringify(data), order_number)
       return null
     }
   } catch (error) {
-    console.error('error: ', error, order_number)
+    console.log('error: ', error, order_number)
     // TODO: sen email to customer?
     await cppApiErrorEmail('catch error', JSON.stringify(error), order_number)
     return null
