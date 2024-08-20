@@ -192,6 +192,7 @@ const generateKey = async (email: string, seed: string, order_number: number) =>
       name: email,
       seed: seed,
     }
+    console.log('url:', CPP_API_URL + '?' + new URLSearchParams(params))
     const res = await fetch(CPP_API_URL + '?' + new URLSearchParams(params))
     const data: ServerResponse = await res.json()
 
