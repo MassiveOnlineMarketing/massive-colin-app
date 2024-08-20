@@ -106,6 +106,8 @@ const template = `
     html: template
   });
 
+  console.log('resend res: ', res)
+
   if (res.error) {
     console.error('Error: ', res.error)
     return
@@ -214,6 +216,7 @@ export const sendKeysToNewCustomer = async (customerName: string, customerEmail:
     html: template
   });
 
+  console.log('resend res: ', res)
 
 
   if (res.error) {
