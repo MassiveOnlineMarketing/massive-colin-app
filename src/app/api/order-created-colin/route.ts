@@ -55,6 +55,7 @@ export const POST = async (req: NextRequest) => {
   const orderData: IShopifyOrder = JSON.parse(data);
   // const orderData: IShopifyOrder = await req.json();
   const { customer: { email }, customer: { first_name }, customer: { last_name }, order_number, line_items } = orderData;
+    const lowerCaseEmail = email.toLowerCase();
     const customerName = `${first_name} ${last_name}`
     console.log('🟡 Processing order: ', order_number)
 
@@ -65,7 +66,7 @@ export const POST = async (req: NextRequest) => {
       console.log('🟡 Creating customer')
       customer = await db.user.create({
         data: {
-          email,
+          email: lowerCaseEmail,
           name: customerName
         }
       })
@@ -91,11 +92,11 @@ export const POST = async (req: NextRequest) => {
       if (item.product_id in BUNDLE_PRODUCT_IDS) {
         console.log('product id ', item.product_id);
         const productIds = BUNDLE_PRODUCT_IDS[item.product_id];
-        keysToAdd = await processProductKeys(email, productIds, order_number, customer.id, order.id);
+        keysToAdd = await processProductKeys(lowerCaseEmail, productIds, order_number, customer.id, order.id);
       } else {
         // Single product
         console.log('product id: ', item.product_id);
-        keysToAdd = await processProductKeys(email, [item.product_id], order_number, customer.id, order.id);
+        keysToAdd = await processProductKeys(lowerCaseEmail, [item.product_id], order_number, customer.id, order.id);
       }
 
       if (keysToAdd === null) {
@@ -123,12 +124,12 @@ export const POST = async (req: NextRequest) => {
     if (newCustomer) {
       // Send welcome email with keys
       console.log('🟡 Send keys with account');
-      sendKeysToNewCustomer(customerName, email, productKeys)
+      sendKeysToNewCustomer(customerName, lowerCaseEmail, productKeys)
       // await sendKeysToNewCustomer(customerName, TEMP_EMAIL, productKeys)
     } else {
       // Send keys
       console.log('🟡 Send keys without account');
-      sendKeysToExistingCustomer(customerName, email, productKeys);
+      sendKeysToExistingCustomer(customerName, lowerCaseEmail, productKeys);
       // await sendKeysToExistingCustomer(customerName, TEMP_EMAIL, productKeys);
     }
 
