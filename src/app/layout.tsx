@@ -9,7 +9,7 @@ const inter = Inter({ subsets: ['latin'] })
 
 export const metadata = {
   title: {
-    default: 'CARP Audio - License Dashboard',
+    default: 'License Dashboard - CARP Audio',
     template: '%s | CARP Audio',
   },
   description:
