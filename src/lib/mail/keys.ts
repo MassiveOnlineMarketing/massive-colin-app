@@ -19,8 +19,8 @@ export const sendKeysToExistingCustomer = async (customerName: string, customerE
   console.log('customerEmail: ', customerEmail)
   console.log('customerName: ', customerName)
   console.log('keys: ', keys)
-  
-const template = `
+
+  const template = `
   <!DOCTYPE html>
   <html xmlns:v="urn:schemas-microsoft-com:vml" xmlns:o="urn:schemas-microsoft-com:office:office" lang="en">
 
@@ -61,8 +61,8 @@ const template = `
       <div style="margin: 0 auto 0 auto; width: fit-content; margin: 32px 0;">
         <table style="width: 100%; border-collapse: collapse;">
           ${keys.map((key, index) => {
-            if (index % 2 === 0) {
-              return `
+    if (index % 2 === 0) {
+      return `
                 <tr>
                   <td style="padding: 8px;">
                     ${productCardHtml(keys[index])}
@@ -72,8 +72,8 @@ const template = `
                   </td>
                 </tr>
               `;
-            }
-          }).join('')}
+    }
+  }).join('')}
         </table>
       </div>
 
@@ -108,12 +108,12 @@ const template = `
 
   console.log('resend res: ', res)
 
+
   if (res.error) {
     console.error('Error: ', res.error)
-    return
   }
-
-  console.log('🟢 sendKeysToExistingCustomer')
+  console.log('🟢 sendKeysToNewCustomer')
+  return res
 }
 
 /**
@@ -171,8 +171,8 @@ export const sendKeysToNewCustomer = async (customerName: string, customerEmail:
       <div style="margin: 0 auto 0 auto; width: fit-content; margin: 32px 0;">
         <table table style="width: 100%; border-collapse: collapse;">
           ${keys.map((key, index) => {
-            if (index % 2 === 0) {
-              return `
+    if (index % 2 === 0) {
+      return `
                 <tr>
                   <td style="padding: 8px;">
                     ${productCardHtml(keys[index])}
@@ -182,8 +182,8 @@ export const sendKeysToNewCustomer = async (customerName: string, customerEmail:
                   </td>
                 </tr>
               `;
-            }
-          }).join('')}
+    }
+  }).join('')}
         </table>
       </div>
 
@@ -221,15 +221,14 @@ export const sendKeysToNewCustomer = async (customerName: string, customerEmail:
 
   if (res.error) {
     console.error('Error: ', res.error)
-    return
   }
-
   console.log('🟢 sendKeysToNewCustomer')
+  return res
 }
 
 
 function productCardHtml(key: ServerKey) {
-      return ( `
+  return (`
         <div
           style="color: #fff; border-radius: 1.5rem; padding: 0.75rem; height: 300px; width: 300px; box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1); background-color: #1e211f;">
           <h2 style="font-size: 1.5rem; text-align: center; color: #FFFFFF; margin: 0 0 16px 0;">${PRODUCTS[key.productId].name}</h2>

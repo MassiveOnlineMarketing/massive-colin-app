@@ -6,6 +6,7 @@ import { generateKeys } from './actions';
 import { deleteAllKeys } from '@/data/key';
 import { sendKeysToExistingCustomer, sendKeysToNewCustomer } from '@/lib/mail/keys';
 import { getKeysByOrderId } from '@/app/admin/actions';
+import { getOrderById, sendKeysWithNewAccountByOrderId } from '@/data/test';
 
 const ClientPage = () => {
 
@@ -98,12 +99,18 @@ const ClientPage = () => {
     console.log(keys)
   }
 
+  const handleSendKeysWithNewAccountByOrderId = async () => {
+    const res = await sendKeysWithNewAccountByOrderId('cm0g7fgam0003123u135k92kv')
+    console.log(res)
+  }
+
   return (
     <div className='flex flex-col'>
       ClientPage
       <button onClick={handleButtonClick}>Click me</button>  
       <button onClick={handleSendEmail}>send email</button>
       <button onClick={handleGetKeysbyOrderId}>get keys by order id</button>
+      <button onClick={handleSendKeysWithNewAccountByOrderId}>send keys with new account by order id</button>
       {/* <button onClick={handleDeleteAllKeys}>Delete all keys</button> */}
     </div>
   )
