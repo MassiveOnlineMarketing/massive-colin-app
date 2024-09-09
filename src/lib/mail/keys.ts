@@ -86,6 +86,12 @@ const template = `
         ><strong>Open Dashboard</strong></a>
       </div>
 
+      <div style="text-align:center; color:white; margin-top:60px; font-size:14px; font-weight:bold;">
+        <a href="https://carpaudio.com/pages/downloads" style="display:block; color:white; text-decoration:none; margin-bottom:10px;">Downloads</a>
+        <a href="https://carpaudio.com/pages/faq" style="display:block; color:white; text-decoration:none; margin-bottom:10px;">FAQ</a>
+        <a href="https://carpaudio.com/collections/all" style="display:block; color:white; text-decoration:none; margin-bottom:10px;">Products</a>
+      </div>
+
       <div style="margin-top: 60px; color: #555; text-align: center;">
         <p style="margin:0; font-size: 14px;"><strong>Adress:</strong> Vlaamse Gaai 39, 3893KE Zeewolde, The Netherlands</p>
         <p style="margin:0; font-size: 14px;"><strong>Contact:</strong> info@carpaudio.com, +31 6 42015153</p>
@@ -192,6 +198,12 @@ export const sendKeysToNewCustomer = async (customerName: string, customerEmail:
         <a href="${registerLink}" target="_blank"
         style="background-color:#ffffff;border-bottom:0px solid transparent;border-left:0px solid transparent;border-radius:50px;border-right:0px solid transparent;border-top:0px solid transparent;color:#000000;display:inline-block;font-family:Arial, Helvetica Neue, Helvetica, sans-serif;font-size:16px;font-weight:undefined;mso-border-alt:none;padding:16px 40px ;text-align:center;text-decoration:none;width:auto;word-break:keep-all;"><span
         ><strong>Create Password</strong></a>
+      </div>
+
+      <div style="text-align:center; color:white; margin-top:60px; font-size:14px; font-weight:bold;">
+        <a href="https://carpaudio.com/pages/downloads" style="display:block; color:white; text-decoration:none; margin-bottom:10px;">Downloads</a>
+        <a href="https://carpaudio.com/pages/faq" style="display:block; color:white; text-decoration:none; margin-bottom:10px;">FAQ</a>
+        <a href="https://carpaudio.com/collections/all" style="display:block; color:white; text-decoration:none; margin-bottom:10px;">Products</a>
       </div>
 
       <div style="margin-top: 60px; color: #555; text-align: center;">
