@@ -22,6 +22,15 @@ export const PRODUCT_ID_CONSTANTS = {
 };
 
 export const PRODUCTS: ProductDictionary = {
+  '9122402894166': {
+    'name': 'Reeferb IR',
+    // 'imgUrl': '/gui/Reeferb_IR_Init.png',
+    'storeLink': 'https://carpaudio.com/products/reeferb-ir',
+    'imgUrl': 'https://cdn.shopify.com/s/files/1/0771/9249/5446/files/Reeferb_IR_Init.png?v=1725908484',
+    'addToCartUrl': 'https://www.carpaudio.com/cart/add?id=48687945154902&quantity=1',
+    'width': 251,
+    'height': 486,
+  },
   '8818545066326': {
     'name': 'Krossbow',
     // 'imgUrl': '/gui/krossbow-gui.png',
