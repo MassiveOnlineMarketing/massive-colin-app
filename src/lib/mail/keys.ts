@@ -16,11 +16,54 @@ const SENDER_EMAIL = "CARP Audio <noreply@carpaudio.com>";
  * @param keys - An array of ServerKey objects representing the keys to be sent.
  */
 export const sendKeysToExistingCustomer = async (customerName: string, customerEmail: string, keys: ServerKey[]) => {
-  console.log('customerEmail: ', customerEmail)
-  console.log('customerName: ', customerName)
-  console.log('keys: ', keys)
+  console.log('Sending keys to existing customer', customerName, customerEmail, keys);
 
-  const template = `
+  const template = createEmailKeysTemplateExisitingCustomer(customerName, keys)
+
+  const res = await resend.emails.send({
+    from: SENDER_EMAIL,
+    to: customerEmail,
+    subject: `Your activation keys for: ${keys.map(key => PRODUCTS[key.productId].name).join(', ')}`,
+    html: template
+  });
+
+  if (res.error) {
+    console.error('Resend Error: ', res.error)
+  }
+
+  return res
+}
+
+
+/**
+ * Sends an email to the customer with the provided keys with the account activation link.
+ * @param customerEmail - The email address of the customer.
+ * @param customerName - The name of the customer.
+ * @param keys - An array of ServerKey objects representing the keys to be sent.
+ */
+export const sendKeysToNewCustomer = async (customerName: string, customerEmail: string, keys: ServerKey[]) => {
+  console.log('Sending keys to new customer', customerName, customerEmail, keys);
+
+  const template = createEmailKeysTemplateNewCustomer(customerName, customerEmail, keys)
+
+  const res = await resend.emails.send({
+    from: SENDER_EMAIL,
+    to: customerEmail,
+    subject: `Your activation keys for: ${keys.map(key => PRODUCTS[key.productId].name).join(', ')}`,
+    html: template
+  });
+
+  if (res.error) {
+    console.error('Resend Error: ', res.error)
+  }
+
+  return res
+}
+
+
+
+const createEmailKeysTemplateExisitingCustomer = (customerName: string, keys: ServerKey[]) => {
+  return `
   <!DOCTYPE html>
   <html xmlns:v="urn:schemas-microsoft-com:vml" xmlns:o="urn:schemas-microsoft-com:office:office" lang="en">
 
@@ -98,39 +141,12 @@ export const sendKeysToExistingCustomer = async (customerName: string, customerE
 
   </html>
   `
-
-  const res = await resend.emails.send({
-    from: SENDER_EMAIL,
-    to: customerEmail,
-    subject: `Your activation keys for: ${keys.map(key => PRODUCTS[key.productId].name).join(', ')}`,
-    html: template
-  });
-
-  console.log('resend res: ', res)
-
-
-  if (res.error) {
-    console.error('Error: ', res.error)
-  }
-  console.log('🟢 sendKeysToNewCustomer')
-  return res
 }
 
-/**
- * Sends an email to the customer with the provided keys with the account activation link.
- * @param customerEmail - The email address of the customer.
- * @param customerName - The name of the customer.
- * @param keys - An array of ServerKey objects representing the keys to be sent.
- */
-export const sendKeysToNewCustomer = async (customerName: string, customerEmail: string, keys: ServerKey[]) => {
+const createEmailKeysTemplateNewCustomer = (customerName: string, customerEmail: string, keys: ServerKey[]) => {
   const registerLink = `${domain}/auth/register?email=${customerEmail}`
 
-  console.log('customerEmail: ', customerEmail)
-  console.log('customerName: ', customerName)
-  console.log('keys: ', keys)
-
-
-  const template = `    
+  return `    
   <!DOCTYPE html>
   <html xmlns:v="urn:schemas-microsoft-com:vml" xmlns:o="urn:schemas-microsoft-com:office:office" lang="en">
 
@@ -208,24 +224,7 @@ export const sendKeysToNewCustomer = async (customerName: string, customerEmail:
 
   </html>
 `
-
-  const res = await resend.emails.send({
-    from: SENDER_EMAIL,
-    to: customerEmail,
-    subject: `Your activation keys for: ${keys.map(key => PRODUCTS[key.productId].name).join(', ')}`,
-    html: template
-  });
-
-  console.log('resend res: ', res)
-
-
-  if (res.error) {
-    console.error('Error: ', res.error)
-  }
-  console.log('🟢 sendKeysToNewCustomer')
-  return res
 }
-
 
 function productCardHtml(key: ServerKey) {
   return (`
