@@ -14,7 +14,7 @@ const ClientPage = () => {
   const handleButtonClick = async () => {
     console.log('button clicked')
     // await generateKeys()
-    await fetch('/api/order-created-colin', {
+    await fetch('/api/order-created-test', {
       method: 'POST', // Assuming you're sending data to the server
       headers: {
         'Content-Type': 'application/json',
@@ -121,6 +121,9 @@ const ClientPage = () => {
     </div>
   )
 }
+
+const PRODUCT_ID_LINE_ONE = 9122402894166
+const PRODUCT_ID_LINE_TWO = 8818545066326
 
 const data = {
   "id": 6134457074006,
@@ -405,7 +408,7 @@ const data = {
             }
           },
           "product_exists": true,
-          "product_id": 8818545066326,
+          "product_id": PRODUCT_ID_LINE_ONE,
           "properties": [],
           "quantity": 1,
           "requires_shipping": false,
@@ -454,7 +457,7 @@ const data = {
             }
           },
           "product_exists": true,
-          "product_id": 8785285742934,
+          "product_id": PRODUCT_ID_LINE_TWO,
           "properties": [],
           "quantity": 1,
           "requires_shipping": false,
@@ -507,7 +510,7 @@ const data = {
         }
       },
       "product_exists": true,
-      "product_id": 8818545066326,
+      "product_id": PRODUCT_ID_LINE_ONE,
       "properties": [],
       "quantity": 1,
       "requires_shipping": false,
@@ -556,7 +559,7 @@ const data = {
         }
       },
       "product_exists": true,
-      "product_id": 8785285742934,
+      "product_id": PRODUCT_ID_LINE_TWO,
       "properties": [],
       "quantity": 1,
       "requires_shipping": false,

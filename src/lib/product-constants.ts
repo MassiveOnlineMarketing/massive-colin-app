@@ -12,6 +12,7 @@ type ProductDictionary = {
 };
 
 export const PRODUCT_ID_CONSTANTS = {
+  reeferbIR: '9122402894166',
   krossbow: '8818545066326',
   amp: '8703626576214',
   octapus: '8651898257750',
