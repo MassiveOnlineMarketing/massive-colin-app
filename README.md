@@ -1,7 +1,7 @@
 ! Altijd ff je terminal leeg maken
 
 # Pull de laatste versie van ze webs
-git pull orign main
+git pull orign dev-main
 npm i 
 
 # start test website 
@@ -11,22 +11,11 @@ npm run dev
 npx prisma studio
 
 
-Tailwind css 
-
 
 # Product toevoegen
 control p product-constants
 contorl p route /order-created-colin
 
-
-
-
-# Dingen die aangepast moeten worden
-- copy auth folder
-- copy lib
-- copy components
-- Session provider in layout
-- DB url in env file
 
 
 # install prisma  

@@ -101,7 +101,6 @@ function createAnnouncementEmailTemplate(customerName: string, customerEmail: st
     </div>
   </body>
 
-  </html>
-      
-      `
+  </html>    
+  `
 }

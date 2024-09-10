@@ -128,12 +128,13 @@ const createEmailKeysTemplateExisitingCustomer = (customerName: string, keys: Se
         style="background-color:#ffffff;border-bottom:0px solid transparent;border-left:0px solid transparent;border-radius:50px;border-right:0px solid transparent;border-top:0px solid transparent;color:#000000;display:inline-block;font-family:Arial, Helvetica Neue, Helvetica, sans-serif;font-size:16px;font-weight:undefined;mso-border-alt:none;padding:16px 40px ;text-align:center;text-decoration:none;width:auto;word-break:keep-all;"><span
         ><strong>Open Dashboard</strong></a>
       </div>
-
+      
       <div style="text-align:center; color:white; margin-top:60px; font-size:14px; font-weight:bold;">
         <a href="https://carpaudio.com/pages/downloads" style="display:block; color:white; text-decoration:none; margin-bottom:10px;">Downloads</a>
         <a href="https://carpaudio.com/pages/faq" style="display:block; color:white; text-decoration:none; margin-bottom:10px;">FAQ</a>
         <a href="https://carpaudio.com/collections/all" style="display:block; color:white; text-decoration:none; margin-bottom:10px;">Products</a>
       </div>
+
 
       <div style="margin-top: 60px; color: #555; text-align: center;">
         <p style="margin:0; font-size: 14px;"><strong>Adress:</strong> Vlaamse Gaai 39, 3893KE Zeewolde, The Netherlands</p>
@@ -147,29 +148,9 @@ const createEmailKeysTemplateExisitingCustomer = (customerName: string, keys: Se
 
   </html>
   `
-
-  const res = await resend.emails.send({
-    from: SENDER_EMAIL,
-    to: customerEmail,
-    subject: `Your activation keys for: ${keys.map(key => PRODUCTS[key.productId].name).join(', ')}`,
-    html: template
-  });
-
-  if (res.error) {
-    console.error('Error: ', res.error)
-    return
-  }
-
-  console.log('🟢 sendKeysToExistingCustomer')
 }
 
-/**
- * Sends an email to the customer with the provided keys with the account activation link.
- * @param customerEmail - The email address of the customer.
- * @param customerName - The name of the customer.
- * @param keys - An array of ServerKey objects representing the keys to be sent.
- */
-export const sendKeysToNewCustomer = async (customerName: string, customerEmail: string, keys: ServerKey[]) => {
+const createEmailKeysTemplateNewCustomer = (customerName: string, customerEmail: string, keys: ServerKey[]) => {
   const registerLink = `${domain}/auth/register?email=${customerEmail}`
 
   return `    
@@ -256,24 +237,7 @@ export const sendKeysToNewCustomer = async (customerName: string, customerEmail:
 
   </html>
 `
-
-  const res = await resend.emails.send({
-    from: SENDER_EMAIL,
-    to: customerEmail,
-    subject: `Your activation keys for: ${keys.map(key => PRODUCTS[key.productId].name).join(', ')}`,
-    html: template
-  });
-
-
-
-  if (res.error) {
-    console.error('Error: ', res.error)
-    return
-  }
-
-  console.log('🟢 sendKeysToNewCustomer')
 }
-
 
 function productCardHtml(key: ServerKey) {
   return (`
