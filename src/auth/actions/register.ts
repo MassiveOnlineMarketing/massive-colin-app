@@ -15,11 +15,10 @@ export const register = async (values: z.infer<typeof RegisterSchema>) => {
   }
 
   const { email, password } = validatedFields.data;
-  const lowerCaseEmail = email.toLowerCase();
   
   const hashedPassword = await bcrypt.hash(password, 10);
 
-  const existingUser = await getUserByEmail(lowerCaseEmail);
+  const existingUser = await getUserByEmail(email);
 
   if (existingUser) {
     if (existingUser.password) {
@@ -27,24 +26,24 @@ export const register = async (values: z.infer<typeof RegisterSchema>) => {
     } else {
       await db.user.update({
         where: {
-          email: lowerCaseEmail
+          email
         },
         data: {
           password: hashedPassword
         }
       })
     }
-    return { success: "Account created successfully! <br> Click <a href='/auth/login'>here</a> to login"};
+    return { success: "Account created successfully! <br> Click <a href='http://localhost:3000/auth/login'>here</a> to login"};
   }
 
   await db.user.create({
     data: {
-      email: lowerCaseEmail,
+      email,
       password: hashedPassword,
     },
   });
 
-  return { success: "Account created successfully! <br> Click <a href='/auth/login'>here</a> to login"};
+  return { success: "Account created successfully! <br> Click <a href='http://localhost:3000/auth/login'>here</a> to login"};
 };
 
 

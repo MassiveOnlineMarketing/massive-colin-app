@@ -19,11 +19,9 @@ export const login = async (
     return { error: "Invalid fields!" };
   }
 
-  const { email: nonSanitizedEmail, password } = validatedFields.data;
-  const email = nonSanitizedEmail.toLowerCase();
+  const { email, password } = validatedFields.data;
 
   const existingUser = await getUserByEmail(email);
-  console.log('existingUser: ', existingUser);
 
   if (!existingUser || !existingUser.email || !existingUser.password) {
     return { error: "Email does not exist!" }

@@ -55,18 +55,17 @@ export const POST = async (req: NextRequest) => {
   const orderData: IShopifyOrder = JSON.parse(data);
   // const orderData: IShopifyOrder = await req.json();
   const { customer: { email }, customer: { first_name }, customer: { last_name }, order_number, line_items } = orderData;
-    const lowerCaseEmail = email.toLowerCase();
     const customerName = `${first_name} ${last_name}`
     console.log('🟡 Processing order: ', order_number)
+    console.log('url', CPP_API_URL)
 
     let newCustomer = false
     //* Check if we already have an user with this email
     let customer = await db.user.findUnique({ where: { email } })
     if (!customer) {
-      console.log('🟡 Creating customer')
       customer = await db.user.create({
         data: {
-          email: lowerCaseEmail,
+          email,
           name: customerName
         }
       })
@@ -74,7 +73,6 @@ export const POST = async (req: NextRequest) => {
     }
 
     //* Create order
-    console.log('🟡 Creating order')
     const order = await db.order.create({
       data: {
         customerId: customer.id,
@@ -92,11 +90,11 @@ export const POST = async (req: NextRequest) => {
       if (item.product_id in BUNDLE_PRODUCT_IDS) {
         console.log('product id ', item.product_id);
         const productIds = BUNDLE_PRODUCT_IDS[item.product_id];
-        keysToAdd = await processProductKeys(lowerCaseEmail, productIds, order_number, customer.id, order.id);
+        keysToAdd = await processProductKeys(email, productIds, order_number, customer.id, order.id);
       } else {
         // Single product
         console.log('product id: ', item.product_id);
-        keysToAdd = await processProductKeys(lowerCaseEmail, [item.product_id], order_number, customer.id, order.id);
+        keysToAdd = await processProductKeys(email, [item.product_id], order_number, customer.id, order.id);
       }
 
       if (keysToAdd === null) {
@@ -124,12 +122,12 @@ export const POST = async (req: NextRequest) => {
     if (newCustomer) {
       // Send welcome email with keys
       console.log('🟡 Send keys with account');
-      await sendKeysToNewCustomer(customerName, lowerCaseEmail, productKeys)
+      sendKeysToNewCustomer(email, customerName, productKeys)
       // await sendKeysToNewCustomer(customerName, TEMP_EMAIL, productKeys)
     } else {
       // Send keys
       console.log('🟡 Send keys without account');
-      await sendKeysToExistingCustomer(customerName, lowerCaseEmail, productKeys);
+      sendKeysToExistingCustomer(email, customerName, productKeys);
       // await sendKeysToExistingCustomer(customerName, TEMP_EMAIL, productKeys);
     }
 
@@ -155,11 +153,10 @@ export const POST = async (req: NextRequest) => {
  */
 async function processProductKeys(email: string, productIds: number[], order_number: number, customerId: string, orderId: string): Promise<ServerKey[] | null> {
   let productKeys: ServerKey[] = [];
-  console.log('🟡 Processing product keys: ', productIds);
   for (const productId of productIds) {
     const seed = SEEDS[productId];
     const key = await generateKey(email, seed, order_number);
-    console.log('🟡 key: ', key, 'productId: ', productId);
+    console.log('key: ', key);
 
     if (key === null) {
       // TODO: Email to customer?
@@ -193,7 +190,6 @@ const generateKey = async (email: string, seed: string, order_number: number) =>
       name: email,
       seed: seed,
     }
-    console.log('url:', CPP_API_URL + '?' + new URLSearchParams(params))
     const res = await fetch(CPP_API_URL + '?' + new URLSearchParams(params))
     const data: ServerResponse = await res.json()
 
@@ -202,13 +198,13 @@ const generateKey = async (email: string, seed: string, order_number: number) =>
 
       return data.generatedKey
     } else {
-      console.log('error: ', data.message, order_number)
+      console.error('error: ', data.message, order_number)
       // TODO: sen email to customer?
       await cppApiErrorEmail(data.message, JSON.stringify(data), order_number)
       return null
     }
   } catch (error) {
-    console.log('error: ', error, order_number)
+    console.error('error: ', error, order_number)
     // TODO: sen email to customer?
     await cppApiErrorEmail('catch error', JSON.stringify(error), order_number)
     return null

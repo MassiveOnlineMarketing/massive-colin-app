@@ -129,6 +129,12 @@ const createEmailKeysTemplateExisitingCustomer = (customerName: string, keys: Se
         ><strong>Open Dashboard</strong></a>
       </div>
 
+      <div style="text-align:center; color:white; margin-top:60px; font-size:14px; font-weight:bold;">
+        <a href="https://carpaudio.com/pages/downloads" style="display:block; color:white; text-decoration:none; margin-bottom:10px;">Downloads</a>
+        <a href="https://carpaudio.com/pages/faq" style="display:block; color:white; text-decoration:none; margin-bottom:10px;">FAQ</a>
+        <a href="https://carpaudio.com/collections/all" style="display:block; color:white; text-decoration:none; margin-bottom:10px;">Products</a>
+      </div>
+
       <div style="margin-top: 60px; color: #555; text-align: center;">
         <p style="margin:0; font-size: 14px;"><strong>Adress:</strong> Vlaamse Gaai 39, 3893KE Zeewolde, The Netherlands</p>
         <p style="margin:0; font-size: 14px;"><strong>Contact:</strong> info@carpaudio.com, +31 6 42015153</p>
@@ -141,9 +147,29 @@ const createEmailKeysTemplateExisitingCustomer = (customerName: string, keys: Se
 
   </html>
   `
+
+  const res = await resend.emails.send({
+    from: SENDER_EMAIL,
+    to: customerEmail,
+    subject: `Your activation keys for: ${keys.map(key => PRODUCTS[key.productId].name).join(', ')}`,
+    html: template
+  });
+
+  if (res.error) {
+    console.error('Error: ', res.error)
+    return
+  }
+
+  console.log('🟢 sendKeysToExistingCustomer')
 }
 
-const createEmailKeysTemplateNewCustomer = (customerName: string, customerEmail: string, keys: ServerKey[]) => {
+/**
+ * Sends an email to the customer with the provided keys with the account activation link.
+ * @param customerEmail - The email address of the customer.
+ * @param customerName - The name of the customer.
+ * @param keys - An array of ServerKey objects representing the keys to be sent.
+ */
+export const sendKeysToNewCustomer = async (customerName: string, customerEmail: string, keys: ServerKey[]) => {
   const registerLink = `${domain}/auth/register?email=${customerEmail}`
 
   return `    
@@ -212,6 +238,12 @@ const createEmailKeysTemplateNewCustomer = (customerName: string, customerEmail:
         ><strong>Create Password</strong></a>
       </div>
 
+      <div style="text-align:center; color:white; margin-top:60px; font-size:14px; font-weight:bold;">
+        <a href="https://carpaudio.com/pages/downloads" style="display:block; color:white; text-decoration:none; margin-bottom:10px;">Downloads</a>
+        <a href="https://carpaudio.com/pages/faq" style="display:block; color:white; text-decoration:none; margin-bottom:10px;">FAQ</a>
+        <a href="https://carpaudio.com/collections/all" style="display:block; color:white; text-decoration:none; margin-bottom:10px;">Products</a>
+      </div>
+
       <div style="margin-top: 60px; color: #555; text-align: center;">
         <p style="margin:0; font-size: 14px;"><strong>Adress:</strong> Vlaamse Gaai 39, 3893KE Zeewolde, The Netherlands</p>
         <p style="margin:0; font-size: 14px;"><strong>Contact:</strong> info@carpaudio.com, +31 6 42015153</p>
@@ -224,7 +256,24 @@ const createEmailKeysTemplateNewCustomer = (customerName: string, customerEmail:
 
   </html>
 `
+
+  const res = await resend.emails.send({
+    from: SENDER_EMAIL,
+    to: customerEmail,
+    subject: `Your activation keys for: ${keys.map(key => PRODUCTS[key.productId].name).join(', ')}`,
+    html: template
+  });
+
+
+
+  if (res.error) {
+    console.error('Error: ', res.error)
+    return
+  }
+
+  console.log('🟢 sendKeysToNewCustomer')
 }
+
 
 function productCardHtml(key: ServerKey) {
   return (`
