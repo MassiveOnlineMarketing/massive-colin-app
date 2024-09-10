@@ -6,6 +6,8 @@ import { generateKeys } from './actions';
 import { deleteAllKeys } from '@/data/key';
 import { sendKeysToExistingCustomer, sendKeysToNewCustomer } from '@/lib/mail/keys';
 import { getKeysByOrderId } from '@/app/admin/actions';
+import { getOrderById, sendKeys } from '@/data/test';
+import { sendAnnouncementToOldCustomers } from '@/lib/mail/announcement';
 
 const ClientPage = () => {
 
@@ -98,12 +100,23 @@ const ClientPage = () => {
     console.log(keys)
   }
 
+  const handleSendKeysWithNewAccountByOrderId = async () => {
+    const res = await sendKeys('cm01hx9lq000370bfnmjsk0pz')
+    console.log(res)
+  }
+
+  const handleSendAnnouncementToOldCustomers = async () => {
+    await sendAnnouncementToOldCustomers()
+  }
+
   return (
     <div className='flex flex-col'>
       ClientPage
       <button onClick={handleButtonClick}>Click me</button>  
       <button onClick={handleSendEmail}>send email</button>
       <button onClick={handleGetKeysbyOrderId}>get keys by order id</button>
+      <button onClick={handleSendKeysWithNewAccountByOrderId}>send keys with new account by order id</button>
+      <button onClick={handleSendAnnouncementToOldCustomers}>send announcement to old customers</button>
       {/* <button onClick={handleDeleteAllKeys}>Delete all keys</button> */}
     </div>
   )

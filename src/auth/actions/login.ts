@@ -19,10 +19,11 @@ export const login = async (
     return { error: "Invalid fields!" };
   }
 
-  const { email, password } = validatedFields.data;
-  const lowerCaseEmail = email.toLowerCase();
+  const { email: nonSanitizedEmail, password } = validatedFields.data;
+  const email = nonSanitizedEmail.toLowerCase();
 
-  const existingUser = await getUserByEmail(lowerCaseEmail);
+  const existingUser = await getUserByEmail(email);
+  console.log('existingUser: ', existingUser);
 
   if (!existingUser || !existingUser.email || !existingUser.password) {
     return { error: "Email does not exist!" }
@@ -31,7 +32,7 @@ export const login = async (
 
   try {
     await signIn("credentials", {
-      lowerCaseEmail,
+      email,
       password,
       redirectTo: callbackUrl || DEFAULT_LOGIN_REDIRECT,
     })
