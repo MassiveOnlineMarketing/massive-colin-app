@@ -212,8 +212,8 @@ const createEmailKeysTemplateNewCustomer = (customerName: string, customerEmail:
 
       <div style="color: #fff; text-align: center;">
         <p style="color: #fff; font-size: 24px; margin: 0; padding: 10px 0;"><strong>License(s) added to your Dashboard!</strong></p>
-        <p style="color: #fff; font-size: 12px; margin: 0; padding-top: 10px;">All your purchased licenses are automatically added to your dashboard.</p>
-        <p style="color: #fff; font-size: 12px; margin: 0; padding-bottom: 20px;">Login to view them all:</p>
+        <p style="color: #fff; font-size: 12px; margin: 0; padding-top: 10px;">We've created an account for you.</p>
+        <p style="color: #fff; font-size: 12px; margin: 0; padding-bottom: 20px;">Please create a password to claim your account:</p>
         <a href="${registerLink}" target="_blank"
         style="background-color:#ffffff;border-bottom:0px solid transparent;border-left:0px solid transparent;border-radius:50px;border-right:0px solid transparent;border-top:0px solid transparent;color:#000000;display:inline-block;font-family:Arial, Helvetica Neue, Helvetica, sans-serif;font-size:16px;font-weight:undefined;mso-border-alt:none;padding:16px 40px ;text-align:center;text-decoration:none;width:auto;word-break:keep-all;"><span
         ><strong>Create Password</strong></a>
