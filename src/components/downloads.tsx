@@ -8,13 +8,13 @@ const Downloads = () => {
       <div className='flex flex-col items-center  w-full'>
         <WindowsLogo className='h-[68px] text-white' />
         <p className='mt-5'>Windows / VST3</p>
-        <Link className='w-full mt-8 max-w-[450px] border border-white rounded-full py-4 text-center' target='_blank' href='https://dl.dropboxusercontent.com/scl/fi/4bmu8kt8dlkm3c48bpmun/All-CARP-Audio-Plugins-Win.zip?rlkey=gvmf0rrcff5lfzw7c5t49bcr4&st=q90c3k4j&dl=1'>Download Plugins</Link>
-        <p className='mt-4'>Prefer an Installer for Windows? <span><Link className='text-[#2A6C41]' href='https://dl.dropboxusercontent.com/scl/fi/iijc6v7io661re5v8vo62/CARP-Audio-Plugin-Installer-Win.zip?rlkey=c40t2bkkb1zbf88lby834lop3&st=gomgymyp&dl=1'>Download here</Link></span></p>
+        <Link className='w-full mt-8 max-w-[450px] border border-white rounded-full py-4 text-center' target='_blank' href='https://dl.dropboxusercontent.com/scl/fi/2096vcpmfiytt76p4q0p1/All-CARP-Audio-Plugins-Win.zip?rlkey=72ntrb94ho59jwe4c7wef8mjc&st=os4hxqu5&dl=1'>Download Plugins</Link>
+        <p className='mt-4'>Prefer an Installer for Windows? <span><Link className='text-[#2A6C41]' href='https://dl.dropboxusercontent.com/scl/fi/7rc5n8wpm5kabho8x1v5q/CARP-Audio-Plugin-Installer-Win.zip?rlkey=900uqtdofov9a2pgfvt65ye4k&st=5efhi1fz&dl=1'>Download here</Link></span></p>
       </div>
       <div className='flex flex-col items-center  w-full'>
         <AppleLogo className='h-[65px] text-white'/>
         <p className='mt-5'>Mac OS 10.15 or Higher / VST3 / AU</p>
-        <Link className='w-full mt-8 max-w-[450px] border border-white rounded-full py-4 text-center' target='_blank' href='https://dl.dropboxusercontent.com/scl/fi/1yulbi5hi373yfiedshpk/All-CARP-Audio-Plugins-MacOS.zip?rlkey=mcydyfw42dsw8fqco6de0bzvq&st=ny1c8mhd&dl=1'>Download Plugins</Link>
+        <Link className='w-full mt-8 max-w-[450px] border border-white rounded-full py-4 text-center' target='_blank' href='https://dl.dropboxusercontent.com/scl/fi/sw4gn4ll44pb0qcjijozr/All-CARP-Audio-Plugins-MacOS.zip?rlkey=p8fmd5x3pjafowylsy9ieaqgg&st=hiu75l5j&dl=1'>Download Plugins</Link>
       </div>
     </div>
   )
