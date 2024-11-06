@@ -2,13 +2,11 @@
 
 import { TabContainer, TabContent, TabIndicatorLineAnimated, TabTitle } from '@/components/ui/tabs'
 import React, { useState } from 'react'
-import OrdersTable from './_orders-table'
 import ProductKeyTable from './_product-keys-table'
 import { KeysWithCustomer } from '@/data/admin'
-import { OrderDTO } from '@/data/order'
 import { Dialog, DialogContent, DialogHeader } from '@/components/ui/dialog'
-import { PRODUCT_ID_CONSTANTS } from '@/lib/product-constants';
 import AddKeysForm from './_components/add-new-keys-form';
+import { PRODUCT_ID_CONSTANTS } from '@/config/product.config';
 
 interface TabbedTableProps {
   krossbowKeys: KeysWithCustomer[];

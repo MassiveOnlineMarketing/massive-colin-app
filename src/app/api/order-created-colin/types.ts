@@ -3,16 +3,12 @@ export type ServerResponse = SuccessResonse | ErrorResponse
 
 type SuccessResonse = {
   status: 'success'
-  input: {
-    name: string
-    seed: string
-  }
-  generatedKey: string
+  data: string
 }
 
 type ErrorResponse = {
   status: 'error'
-  message: string
+  data: string
 }
 
 

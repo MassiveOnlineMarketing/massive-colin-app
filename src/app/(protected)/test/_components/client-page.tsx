@@ -113,10 +113,10 @@ const ClientPage = () => {
     <div className='flex flex-col'>
       ClientPage
       <button onClick={handleButtonClick}>Click me</button>  
-      <button onClick={handleSendEmail}>send email</button>
-      <button onClick={handleGetKeysbyOrderId}>get keys by order id</button>
-      <button onClick={handleSendKeysWithNewAccountByOrderId}>send keys with new account by order id</button>
-      <button onClick={handleSendAnnouncementToOldCustomers}>send announcement to old customers</button>
+      {/* <button onClick={handleSendEmail}>send email</button> */}
+      {/* <button onClick={handleGetKeysbyOrderId}>get keys by order id</button> */}
+      {/* <button onClick={handleSendKeysWithNewAccountByOrderId}>send keys with new account by order id</button> */}
+      {/* <button onClick={handleSendAnnouncementToOldCustomers}>send announcement to old customers</button> */}
       {/* <button onClick={handleDeleteAllKeys}>Delete all keys</button> */}
     </div>
   )
@@ -323,7 +323,7 @@ const data = {
   },
   "customer": {
     "id": 7817370206550,
-    "email": "trespaan@gmail.com",
+    "email": "trespaann@gmail.com",
     "created_at": "2024-04-10T20:10:58+02:00",
     "updated_at": "2024-06-24T13:55:18+02:00",
     "first_name": "Albert",

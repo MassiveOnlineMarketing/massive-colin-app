@@ -1,17 +1,18 @@
 "use client";
 
+import { useToast } from "@/components/toast/use-toast";
+
 import { ColumnDef } from "@tanstack/react-table";
 import { StandardHeaderCell, StandardRowCell } from "@/components/ui/table";
+import { getProductInfo } from "@/config/product.config";
+import { sendKeys } from "@/data/test";
 
 import { Checkbox } from "@/components/ui/checkbox";
 import { OrderDTO } from "@/data/order";
-import { cn } from "@/lib/utils";
-import { PRODUCTS } from "@/lib/product-constants";
+
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuLabel, DropdownMenuSeparator, DropdownMenuTrigger } from "@/components/ui/dropdown-menu";
 import { Button } from "@/components/ui/button";
 import { MoreHorizontal } from "lucide-react";
-import { sendKeys } from "@/data/test";
-import { useToast } from "@/components/toast/use-toast";
 
 export const columns = (): ColumnDef<OrderDTO>[] => [
 
@@ -93,7 +94,7 @@ export const columns = (): ColumnDef<OrderDTO>[] => [
         keys.map((key) => {
           return (
             <div key={key.id} className="text-sm leading-5 font-medium text-gray-500">
-              <p className="font-semibold">{PRODUCTS[key.productId].name}</p>
+              <p className="font-semibold">{getProductInfo(key.productId)!.name}</p>
               <p>{key.key1}</p>
               <p className="mb-2">{key.key2}</p>
             </div>

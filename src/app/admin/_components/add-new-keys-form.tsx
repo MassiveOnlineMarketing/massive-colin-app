@@ -1,9 +1,9 @@
 'use client'
 
 import React from 'react'
-import { PRODUCTS } from '@/lib/product-constants';
 import { addNewKeys } from '@/data/key';
 import { useToast } from '@/components/toast/use-toast';
+import { PRODUCTS } from '@/config/product.config';
 
 export interface KeyPair {
   key1: string;

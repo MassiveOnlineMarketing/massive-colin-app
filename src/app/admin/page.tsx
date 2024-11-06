@@ -5,8 +5,7 @@ import OrdersTable from './_orders-table';
 import { getAllOrders } from '@/data/order';
 import { getKeysPerProduct } from '@/data/admin';
 import TabbedTable from './tabbed-table';
-import { PRODUCT_ID_CONSTANTS } from '@/lib/product-constants';
-// import { OrdersTable } from './orders-table';
+import { PRODUCT_ID_CONSTANTS } from '@/config/product.config';
 
 
 async function page() {

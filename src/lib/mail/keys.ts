@@ -1,7 +1,7 @@
 'use server';
 import { Resend } from "resend";
-import { PRODUCTS } from "../product-constants";
 import { ServerKey } from "@/app/api/order-created-colin/types";
+import { getProductInfo } from "@/config/product.config";
 
 
 const resend = new Resend(process.env.RESEND_API_KEY);
@@ -16,14 +16,14 @@ const SENDER_EMAIL = "CARP Audio <noreply@carpaudio.com>";
  * @param keys - An array of ServerKey objects representing the keys to be sent.
  */
 export const sendKeysToExistingCustomer = async (customerName: string, customerEmail: string, keys: ServerKey[]) => {
-  console.log('Sending keys to existing customer', customerName, customerEmail, keys);
+  // console.log('Sending keys to existing customer', customerName, customerEmail, keys);
 
   const template = createEmailKeysTemplateExisitingCustomer(customerName, keys)
 
   const res = await resend.emails.send({
     from: SENDER_EMAIL,
     to: customerEmail,
-    subject: `Your activation keys for: ${keys.map(key => PRODUCTS[key.productId].name).join(', ')}`,
+    subject: `Your activation keys for: ${keys.map(key => getProductInfo(key.productId)?.name).join(', ')}`,
     html: template
   });
 
@@ -42,14 +42,14 @@ export const sendKeysToExistingCustomer = async (customerName: string, customerE
  * @param keys - An array of ServerKey objects representing the keys to be sent.
  */
 export const sendKeysToNewCustomer = async (customerName: string, customerEmail: string, keys: ServerKey[]) => {
-  console.log('Sending keys to new customer', customerName, customerEmail, keys);
+  // console.log('Sending keys to new customer', customerName, customerEmail, keys);
 
   const template = createEmailKeysTemplateNewCustomer(customerName, customerEmail, keys)
 
   const res = await resend.emails.send({
     from: SENDER_EMAIL,
     to: customerEmail,
-    subject: `Your activation keys for: ${keys.map(key => PRODUCTS[key.productId].name).join(', ')}`,
+    subject: `Your activation keys for: ${keys.map(key => getProductInfo(key.productId)?.name).join(', ')}`,
     html: template
   });
 
@@ -243,11 +243,11 @@ function productCardHtml(key: ServerKey) {
   return (`
         <div
           style="color: #fff; border-radius: 1.5rem; padding: 0.75rem; height: 300px; width: 300px; box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1); background-color: #1e211f;">
-          <h2 style="font-size: 1.5rem; text-align: center; color: #FFFFFF; margin: 0 0 16px 0;">${PRODUCTS[key.productId].name}</h2>
+          <h2 style="font-size: 1.5rem; text-align: center; color: #FFFFFF; margin: 0 0 16px 0;">${getProductInfo(key.productId)?.name}</h2>
           <div style="display: flex; justify-content: center; margin-bottom: 32px; width: 100%;" >
             <img alt="product" loading="lazy" height="400" decoding="async"
               style="height: 130px; width: fit-content; margin-left: auto; margin-right: auto; color: transparent; object-fit: contain;"
-              src=${PRODUCTS[key.productId].imgUrl}>
+              src=${getProductInfo(key.productId)?.imgUrl}>
           </div>
           <div
             style="margin-top: auto; padding-left: 1rem; padding-right: 1rem; padding-top: 0.75rem; padding-bottom: 0.75rem; border-radius: 12px; background-color: #262928; font-size: 0.875rem;">

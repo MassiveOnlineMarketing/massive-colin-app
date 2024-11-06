@@ -13,8 +13,7 @@ npx prisma studio
 
 
 # Product toevoegen
-control p product-constants
-contorl p route /order-created-colin
+alles staat onder src/config/product.config.ts
 
 
 

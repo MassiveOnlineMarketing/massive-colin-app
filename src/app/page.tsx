@@ -1,9 +1,10 @@
+'use server';
 
 import { getUserByEmail } from "@/data/user";
 import { auth } from "@/auth/auth";
 
 import Topbar from "@/components/topbar";
-import CardGridTest from "@/components/card-grid-test";
+import CardGrid from "@/components/card-grid";
 import Downloads from "@/components/downloads";
 
 
@@ -23,7 +24,7 @@ export default async function Home() {
           <Topbar userName={user?.name as string} userEmail={user?.email as string} />
 
           {/* Cards Grid */}
-          <CardGridTest keys={keys} />
+          <CardGrid keys={keys} />
 
           <Downloads />
         </div>

@@ -1,76 +1,77 @@
-import React from 'react'
+import React from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 
 import { Key as KeyType } from '@prisma/client';
-import { PRODUCT_ID_CONSTANTS, PRODUCTS } from '@/lib/product-constants';
+import { getProductInfo, PRODUCT_ID_CONSTANTS } from '@/config/product.config';
 
 import { Key } from './plugin-card';
-import { oswald } from '@/styles/styles';
 
+import { oswald } from '@/styles/styles';
 import { LockClosedIcon } from '@radix-ui/react-icons';
 
 type CardGridProps = {
   keys: KeyType[];
-}
+};
 
-function getProduct(productId: string) {
-  return PRODUCTS[productId]
-}
 
+type CardProps = {
+  productId: string;
+  productKeys: KeyType[];
+  owned: boolean;
+  index: number;
+};
+
+const Card = ({ productId, productKeys, owned, index }: CardProps) => (
+  <div key={`${productId}-${index}`} className={`relative flex flex-col gap-4 rounded-3xl p-3 h-[300px] w-[300px] shadow-xl ${owned ? 'bg-[#1e211f]' : 'bg-[#1e211f]/30'}`}>
+    <h2 className={`text-2xl text-center ${oswald.className} ${owned ? 'text-[#FFFFFF]' :"text-[#FFFFFF]/50"}`}>{getProductInfo(productId)!.name}</h2>
+    <Link target="_blank" href={getProductInfo(productId)!.storeLink}>
+      <Image src={getProductInfo(productId)!.imgUrl} alt="product" width={getProductInfo(productId)!.width} height={getProductInfo(productId)!.height} className={`h-[130px] w-fit mx-auto shadow-lg ${owned ? '' : 'opacity-40'}`} />
+    </Link>
+    {productKeys.length > 1 ? (
+      <Key key={`key-${productId}-${index}`} keyOne={productKeys[index].key1} keyTwo={productKeys[index].key2} />
+    ) : (
+      productKeys.map((productKey, index) => (
+        <Key key={`key-${productId}-${index}`} keyOne={productKey.key1} keyTwo={productKey.key2} />
+      ))
+    )}
+
+    {!owned && (
+      <div className={`rounded-full w-fit h-fit m-auto px-6 py-3 flex justify-center items-center ${owned ? 'bg-[#262928]' : 'bg-[#262928]/30'}`}>
+        <Link target="_blank" href={`https://www.carpaudio.com/cart/${getProductInfo(productId)!.shopifyVariantId}:1`} >Buy Now</Link>
+      </div>
+    )}
+    {owned && <div className="absolute right-4 top-4 rounded-full bg-green-500 w-2 h-2 animate-pulse"></div>}
+    {!owned && <LockClosedIcon className="absolute right-4 top-4 text-white/50" />}
+  </div>
+);
 
 const CardGrid = ({ keys }: CardGridProps) => {
+  const sortedProductEntries = Object.entries(PRODUCT_ID_CONSTANTS).sort(
+    ([, productIdA], [, productIdB]) => {
+      const ownedA = keys.some(userKey => userKey.productId === productIdA);
+      const ownedB = keys.some(userKey => userKey.productId === productIdB);
+      return (+ownedB) - (+ownedA);
+    }
+  );
+
   return (
-    <div className="grid grid-cols-4 gap-10">
-      {Object.entries(PRODUCT_ID_CONSTANTS).sort(([keyA, productIdA], [keyB, productIdB]) => {
-        const ownedA = keys.some(userKey => userKey.productId === productIdA);
-        const ownedB = keys.some(userKey => userKey.productId === productIdB);
-        return (+ownedB) - (+ownedA);
-      })
-        .map(([key, productId]) => {
-          const product = PRODUCTS[productId];
-          const owned = keys.some(userKey => userKey.productId === productId);
-          const productKeys = keys.filter(userKey => userKey.productId === productId);
-          console.log('productKeys', productKeys);
-          console.log('productKeys.length', productKeys.length);
-          if (productKeys.length > 1) {
-            return productKeys.map((productKey, index) => (
-              <div key={`${productKey}-${index}`} className={`relative  flex flex-col gap-4 rounded-3xl p-3 h-[300px] ${owned ? 'bg-[#1e211f]' : 'bg-[#1e211f]/30'}`}>
-                <h2 className={`text-[#FFFFFF] text-2xl text-center ${oswald.className} `}>{product.name}</h2>
-                <Image src={product.imgUrl as string} alt="product" width={product.width} height={product.height} className={`h-[130px] w-fit mx-auto shadow-md`} />
-                {/* Render a Key component for each set of keys */}
-                <Key key={`key-${productId}-${index}`} keyOne={productKeys[index].key1} keyTwo={productKeys[index].key2} />
-                {
-                  !owned && <div className="mt-auto bg-[#262928] h-[68px] rounded-[12px] px-4 py-3 flex justify-center items-center"><Link className="opacity-100 " target="_blank" href={getProduct(productId).addToCartUrl}>Add to cart</Link></div>
-                }
+    // <div className="grid grid-cols-4 gap-10">
+    <div className='flex flex-wrap gap-8 w-fit mx-auto justify-center'>
+      {sortedProductEntries.map(([key, productId]) => {
+        const owned = keys.some(userKey => userKey.productId === productId);
+        const productKeys = keys.filter(userKey => userKey.productId === productId);
 
-                {owned && <div className="absolute right-4 top-4 rounded-full bg-green-500 w-2 h-2 animate-pulse"></div>}
-                {!owned && <LockClosedIcon className="absolute right-4 top-4" />}
-              </div>
-            ));
-          } else {
-            return (
-              <div key={productId} className={`relative flex flex-col gap-4 rounded-3xl p-3 h-[300px] ${owned ? 'bg-[#1e211f]' : 'bg-[#1e211f]/30'}`}>
-                <h2 className={`text-[#FFFFFF] text-2xl text-center ${oswald.className} `}>{product.name}</h2>
-                <Image src={product.imgUrl as string} alt="product" width={product.width} height={product.height} className={`h-[130px] w-fit mx-auto ${owned ? '' : 'opacity-40'}`} />
-                {/* Render a Key component for each set of keys */}
-                {
-                  productKeys.map((productKey, index) => (
-                    <Key key={`key-${productId}-${index}`} keyOne={productKey.key1} keyTwo={productKey.key2} />
-                  ))
-                }
-                {
-                  !owned && <div className={`mt-auto h-[68px] rounded-[12px] px-4 py-3 flex justify-center items-center ${owned ? 'bg-[#262928]' : 'bg-[#262928]/30'}`}><Link className="opacity-100 " target="_blank" href={getProduct(productId).addToCartUrl}>Add to cart</Link></div>
-                }
-
-                {owned && <div className="absolute right-4 top-4 rounded-full bg-green-500 w-2 h-2 animate-pulse"></div>}
-                {!owned && <LockClosedIcon className="absolute right-4 top-4" />}
-              </div>
-            )
-          }
-        })}
+        return productKeys.length > 1
+          ? productKeys.map((productKey, index) => (
+            <Card key={`${productId}-${index}`} productId={productId} productKeys={productKeys} owned={owned} index={index} />
+          ))
+          : (
+            <Card key={`${productId}`} productId={productId} productKeys={productKeys} owned={owned} index={0} />
+          );
+      })}
     </div>
-  )
-}
+  );
+};
 
-export default CardGrid
+export default CardGrid;

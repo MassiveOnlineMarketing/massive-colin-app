@@ -3,13 +3,13 @@
 import React, { useEffect } from 'react'
 
 import { Key, User } from '@prisma/client';
+import { getProductInfo } from '@/config/product.config';
 
 import { assignKeysToNewUser } from '@/data/key';
 import { getAllUsers, getAllUsersOrders } from '@/data/user';
 
 import { Dialog, DialogContent, DialogHeader } from '@/components/ui/dialog';
 import { useToast } from '@/components/toast/use-toast';
-import { PRODUCTS } from '@/lib/product-constants';
 
 export type UserTypeWithKeys = User & {
   keys: Key[]
@@ -86,7 +86,7 @@ const Table = () => {
                   </button>
                 </div>
                 <div>
-                  <p>{PRODUCTS[key.productId]?.name}</p>
+                  <p>{getProductInfo(key.productId)?.name}</p>
                   <p>{key.key1}</p>
                   <p>{key.key2}</p>
                 </div>
