@@ -137,7 +137,7 @@ const createEmailKeysTemplateExisitingCustomer = (customerName: string, keys: Se
 
 
       <div style="margin-top: 60px; color: #555; text-align: center;">
-        <p style="margin:0; font-size: 14px;"><strong>Adress:</strong> Vlaamse Gaai 39, 3893KE Zeewolde, The Netherlands</p>
+        <p style="margin:0; font-size: 14px;"><strong>Adress:</strong> Gildenveld 24A, 3892DG Zeewolde, The Netherlands</p>
         <p style="margin:0; font-size: 14px;"><strong>Contact:</strong> info@carpaudio.com, +31 6 42015153</p>
         <p style="margin:0; font-size: 14px;"><strong>VAT:</strong> NL004371747B72</p>
         <p style="margin:0; font-size: 14px;"><strong>KVK:</strong> 87197642</p>
@@ -226,7 +226,7 @@ const createEmailKeysTemplateNewCustomer = (customerName: string, customerEmail:
       </div>
 
       <div style="margin-top: 60px; color: #555; text-align: center;">
-        <p style="margin:0; font-size: 14px;"><strong>Adress:</strong> Vlaamse Gaai 39, 3893KE Zeewolde, The Netherlands</p>
+        <p style="margin:0; font-size: 14px;"><strong>Adress:</strong> Gildenveld 24A, 3892DG Zeewolde, The Netherlands</p>
         <p style="margin:0; font-size: 14px;"><strong>Contact:</strong> info@carpaudio.com, +31 6 42015153</p>
         <p style="margin:0; font-size: 14px;"><strong>VAT:</strong> NL004371747B72</p>
         <p style="margin:0; font-size: 14px;"><strong>KVK:</strong> 87197642</p>
