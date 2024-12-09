@@ -77,19 +77,19 @@ model TwoFactorToken {
 }
 
 model Key {
-  id         String    @id @default(cuid())
+  id         String  @id @default(cuid())
   key1       String
   key2       String
   productId  String
   customerId String?
-  customer   User?     @relation(fields: [customerId], references: [id])
-  Order      Order?    @relation(fields: [orderId], references: [id])
+  customer   User?   @relation(fields: [customerId], references: [id])
+  Order      Order?  @relation(fields: [orderId], references: [id])
   orderId    String?
 }
 
 model Order {
   id          String   @id @default(cuid())
-  orderNumber Int
+  orderNumber Int      @unique
   customerId  String
   customer    User     @relation(fields: [customerId], references: [id])
   keys        Key[]

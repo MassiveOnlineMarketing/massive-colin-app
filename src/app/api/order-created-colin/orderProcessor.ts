@@ -17,6 +17,13 @@ export const processOrder = async (data: string) => {
   const customerName = `${first_name} ${last_name}`;
   console.log("🟡 Processing order: ", order_number);
 
+  // Check if the order already exists
+  const existingOrder = await db.order.findUnique({ where: { orderNumber: order_number } });
+  if (existingOrder) {
+    console.log("🔴 Order already processed: ", order_number);
+    return;
+  }
+
   let newCustomer = false;
   let customer = await db.user.findUnique({ where: { email: lowerCaseEmail } });
   if (!customer) {
