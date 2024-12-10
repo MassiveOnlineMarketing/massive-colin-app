@@ -23,7 +23,7 @@ export const sendKeysToExistingCustomer = async (customerName: string, customerE
   const res = await resend.emails.send({
     from: SENDER_EMAIL,
     to: customerEmail,
-    subject: `Your activation keys for: ${keys.map(key => getProductInfo(key.productId)?.name).join(', ')}`,
+    subject: `Your license keys for: ${keys.map(key => getProductInfo(key.productId)?.name).join(', ')}`,
     html: template
   });
 
@@ -49,7 +49,7 @@ export const sendKeysToNewCustomer = async (customerName: string, customerEmail:
   const res = await resend.emails.send({
     from: SENDER_EMAIL,
     to: customerEmail,
-    subject: `Your activation keys for: ${keys.map(key => getProductInfo(key.productId)?.name).join(', ')}`,
+    subject: `Your license keys for: ${keys.map(key => getProductInfo(key.productId)?.name).join(', ')}`,
     html: template
   });
 
@@ -137,7 +137,7 @@ const createEmailKeysTemplateExisitingCustomer = (customerName: string, keys: Se
 
 
       <div style="margin-top: 60px; color: #555; text-align: center;">
-        <p style="margin:0; font-size: 14px;"><strong>Adress:</strong> Gildenveld 24A, 3892DG Zeewolde, The Netherlands</p>
+        <p style="margin:0; font-size: 14px;"><strong>Address:</strong> Gildenveld 24A, 3892DG Zeewolde, The Netherlands</p>
         <p style="margin:0; font-size: 14px;"><strong>Contact:</strong> info@carpaudio.com, +31 6 42015153</p>
         <p style="margin:0; font-size: 14px;"><strong>VAT:</strong> NL004371747B72</p>
         <p style="margin:0; font-size: 14px;"><strong>KVK:</strong> 87197642</p>
@@ -226,7 +226,7 @@ const createEmailKeysTemplateNewCustomer = (customerName: string, customerEmail:
       </div>
 
       <div style="margin-top: 60px; color: #555; text-align: center;">
-        <p style="margin:0; font-size: 14px;"><strong>Adress:</strong> Gildenveld 24A, 3892DG Zeewolde, The Netherlands</p>
+        <p style="margin:0; font-size: 14px;"><strong>Address:</strong> Gildenveld 24A, 3892DG Zeewolde, The Netherlands</p>
         <p style="margin:0; font-size: 14px;"><strong>Contact:</strong> info@carpaudio.com, +31 6 42015153</p>
         <p style="margin:0; font-size: 14px;"><strong>VAT:</strong> NL004371747B72</p>
         <p style="margin:0; font-size: 14px;"><strong>KVK:</strong> 87197642</p>
