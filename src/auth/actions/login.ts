@@ -20,8 +20,9 @@ export const login = async (
   }
 
   const { email, password } = validatedFields.data;
+  const lowerCaseEmail = email.toLowerCase();
 
-  const existingUser = await getUserByEmail(email);
+  const existingUser = await getUserByEmail(lowerCaseEmail);
 
   if (!existingUser || !existingUser.email || !existingUser.password) {
     return { error: "Email does not exist!" }
@@ -30,7 +31,7 @@ export const login = async (
 
   try {
     await signIn("credentials", {
-      email,
+      email: lowerCaseEmail,
       password,
       redirectTo: callbackUrl || DEFAULT_LOGIN_REDIRECT,
     })

@@ -15,14 +15,15 @@ export const reset = async (values: z.infer<typeof ResetSchema>) => {
   }
 
   const { email } = validatedFields.data;
+  const lowerCaseEmail = email.toLowerCase();
 
-  const existingUser = await getUserByEmail(email);
+  const existingUser = await getUserByEmail(lowerCaseEmail);
 
   if (!existingUser) {
     return { error: "Email not found!" };
   }
 
-  const passwordResetToken = await generatePasswordResetToken(email);
+  const passwordResetToken = await generatePasswordResetToken(lowerCaseEmail);
   await sendPasswordResetEmail(
     passwordResetToken.email,
     passwordResetToken.token,
