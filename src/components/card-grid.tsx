@@ -38,9 +38,14 @@ const Card = ({ productId, productKeys, owned, index }: CardProps) => (
       )}
 
       {!owned && (
-        <div className={`rounded-full w-fit h-fit m-auto px-6 py-3 flex justify-center items-center shadow-custom-lg2 transition-colors duration-100 ease-out ${owned ? 'bg-[#262928]' : 'hover:bg-[#262928]/100 bg-[#262928]/50'}`}>
-          <Link target="_blank" href={`https://www.carpaudio.com/cart/${getProductInfo(productId)!.shopifyVariantId}:1`} >Buy Now</Link>
-        </div>
+        <Link
+          target="_blank"
+          href={`https://www.carpaudio.com/cart/${getProductInfo(productId)!.shopifyVariantId}:1`}
+          className={`rounded-full w-fit h-fit m-auto px-6 py-3 flex justify-center items-center shadow-custom-lg2 transition-colors duration-100 ease-out ${owned ? 'bg-[#262928]' : 'hover:bg-[#262928]/100 bg-[#262928]/50'
+            }`}
+        >
+          Buy Now
+        </Link>
       )}
       {owned && <div className="absolute right-4 top-4 rounded-full bg-green-500 w-2 h-2 animate-pulse"></div>}
       {!owned && <LockClosedIcon className="absolute right-4 top-4 text-white/50" />}
