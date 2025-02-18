@@ -75,7 +75,7 @@ export default function RootLayout({
 
       <body className={`${inter.className} overflow-x-hidden `}>
         <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-KFF97V7M"
-          height="0" width="0" style={{display:"none", visibility:"hidden"}}></iframe></noscript>
+          height="0" width="0" style={{ display: "none", visibility: "hidden" }}></iframe></noscript>
         {children}
 
         <Toaster />

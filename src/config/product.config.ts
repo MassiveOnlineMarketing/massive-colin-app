@@ -6,7 +6,7 @@ export const BUNDLE_PRODUCT_IDS: { [key: number]: number[] } = {
   // Everything Bundle
   8867749134678: [
     8612997890390, 8651898257750, 8492908020054, 8492913262934, 8703626576214,
-    8818545066326, 8536354226518, 9122402894166,
+    8818545066326, 8536354226518, 9122402894166, 9473567228246,
   ],
 };
 
@@ -25,6 +25,7 @@ type ProductDictionary = {
 };
 
 export const PRODUCT_ID_CONSTANTS = {
+  bodyshifter: '9473567228246',
   reeferbIR: '9122402894166',
   krossbow: '8818545066326',
   amp: '8703626576214',
@@ -36,6 +37,15 @@ export const PRODUCT_ID_CONSTANTS = {
 };
 
 export const PRODUCTS: ProductDictionary = {
+  '9473567228246': {
+    'name': 'Body Shifter',
+    'storeLink': 'https://carpaudio.com/products/body-shifter',
+    'imgUrl': 'https://cdn.shopify.com/s/files/1/0771/9249/5446/files/Body_Shifter_Init.png?v=1739887609',
+    'width': 797,
+    'height': 448,
+    'seed': '130920008',
+    'shopifyVariantId': '49890853585238',
+  },
   '9122402894166': {
     'name': 'Reeferb IR',
     'storeLink': 'https://carpaudio.com/products/reeferb-ir',
