@@ -95,3 +95,14 @@ model Order {
   keys        Key[]
   createdAt   DateTime @default(now())
 }
+
+
+enum DownloadPlatform {
+  WINDOWS
+  MAC
+}
+model DownloadLinks {
+  id         String   @id @default(cuid())
+  key        DownloadPlatform
+  link       String
+}
