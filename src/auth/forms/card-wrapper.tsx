@@ -7,8 +7,8 @@ import { BackButton } from "../components/back-button";
 interface CardWrapperProps {
   children: React.ReactNode;
   headerLabel: string;
-  backButtonLabel: string;
-  backButtonHref: string;
+  backButtonLabel?: string;
+  backButtonHref?: string;
 };
 
 export const CardWrapper = ({
@@ -18,7 +18,7 @@ export const CardWrapper = ({
   backButtonHref,
 }: CardWrapperProps) => {
   return (
-    <Card className="w-[400px] mx-auto bg-transparent text-white border-none">
+    <Card className="max-w-[400px] mx-auto bg-transparent text-white border-none">
       <CardHeader>
         <Header label={headerLabel} />
       </CardHeader>
@@ -26,12 +26,14 @@ export const CardWrapper = ({
         {children}
       </CardContent>
 
-      <CardFooter>
-        <BackButton
-          label={backButtonLabel}
-          href={backButtonHref}
-        />
-      </CardFooter>
+      {backButtonHref && backButtonLabel && (
+        <CardFooter>
+          <BackButton
+            label={backButtonLabel}
+            href={backButtonHref}
+          />
+        </CardFooter>
+      )}
     </Card>
   );
 };
