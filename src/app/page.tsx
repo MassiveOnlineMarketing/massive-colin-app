@@ -24,7 +24,7 @@ export default async function Home() {
           <Topbar userName={user?.name as string} userEmail={user?.email as string} />
 
           {/* Cards Grid */}
-          <CardGrid keys={keys} />
+          <CardGrid keys={keys} userEmail={user?.email}/>
 
           <Downloads />
         </div>

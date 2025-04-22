@@ -12,6 +12,7 @@ import { LockClosedIcon } from '@radix-ui/react-icons';
 
 type CardGridProps = {
   keys: KeyType[];
+  userEmail?: string | null;
 };
 
 
@@ -20,9 +21,10 @@ type CardProps = {
   productKeys: KeyType[];
   owned: boolean;
   index: number;
+  userEmail?: string | null;
 };
 
-const Card = ({ productId, productKeys, owned, index }: CardProps) => (
+const Card = ({ productId, productKeys, owned, index, userEmail }: CardProps) => (
   <div className='group'>
     <div key={`${productId}-${index}`} className={`relative flex flex-col gap-4 rounded-3xl p-3 h-[300px] w-[300px] shadow-xl  transition-colors duration-200 ease-in-out ${owned ? 'bg-[#1e211f] group-hover:bg-[#222523]' : 'bg-[#1e211f]/30'}`}>
       <h2 className={`text-2xl text-center ${oswald.className} ${owned ? 'text-[#FFFFFF]' : "text-[#FFFFFF]/50"}`}>{getProductInfo(productId)!.name}</h2>
@@ -40,7 +42,7 @@ const Card = ({ productId, productKeys, owned, index }: CardProps) => (
       {!owned && (
         <Link
           target="_blank"
-          href={`https://www.carpaudio.com/cart/${getProductInfo(productId)!.shopifyVariantId}:1`}
+          href={`https://www.carpaudio.com/cart/${getProductInfo(productId)!.shopifyVariantId}:1?checkout[email]=${userEmail}`}
           className={`rounded-full w-fit h-fit m-auto px-6 py-3 flex justify-center items-center shadow-custom-lg2 transition-colors duration-100 ease-out ${owned ? 'bg-[#262928]' : 'hover:bg-[#262928]/100 bg-[#262928]/50'
             }`}
         >
@@ -53,7 +55,7 @@ const Card = ({ productId, productKeys, owned, index }: CardProps) => (
   </div>
 );
 
-const CardGrid = ({ keys }: CardGridProps) => {
+const CardGrid = ({ keys, userEmail }: CardGridProps) => {
   const sortedProductEntries = Object.entries(PRODUCT_ID_CONSTANTS).sort(
     ([, productIdA], [, productIdB]) => {
       const ownedA = keys.some(userKey => userKey.productId === productIdA);
@@ -71,10 +73,10 @@ const CardGrid = ({ keys }: CardGridProps) => {
 
         return productKeys.length > 1
           ? productKeys.map((productKey, index) => (
-            <Card key={`${productId}-${index}`} productId={productId} productKeys={productKeys} owned={owned} index={index} />
+            <Card key={`${productId}-${index}`} productId={productId} productKeys={productKeys} owned={owned} index={index} userEmail={userEmail}/>
           ))
           : (
-            <Card key={`${productId}`} productId={productId} productKeys={productKeys} owned={owned} index={0} />
+            <Card key={`${productId}`} productId={productId} productKeys={productKeys} owned={owned} index={0} userEmail={userEmail}/>
           );
       })}
     </div>
