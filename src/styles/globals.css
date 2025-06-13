@@ -142,3 +142,47 @@
   height: 100dvh;
   /* other styles */
 }
+
+  /* Bubbles overlay website */
+  .screen-overlay-container {
+    position: fixed; 
+    width: 100vw; 
+    height: 100vh; 
+    top: 0; 
+    left: 0;
+    pointer-events: none;
+  }
+
+  .bubble-container {
+    width: 100%; 
+    height: 100%; 
+    position: absolute;
+    pointer-events: none;
+  }
+  
+  .bubble {
+    position: absolute;
+    bottom: -100px; /* Start below the viewport */
+    background: rgba(255, 255, 255, 0.1); /* Bubble color */
+    border-radius: 50%; /* Make it round */
+    animation: rise 10s infinite; /* Animation properties */
+  }
+  
+  /* Varying sizes for bubbles */
+  .bubble:nth-child(1) { width: 40px; height: 40px; left: 1%; animation-delay: 0s; }
+  .bubble:nth-child(2) { width: 75px; height: 75px; left: 10%; animation-delay: 1s; }
+  .bubble:nth-child(3) { width: 50px; height: 50px; left: 70%; animation-delay: 2s; }
+  .bubble:nth-child(4) { width: 70px; height: 70px; left: 50%; animation-delay: 3s; }
+  .bubble:nth-child(5) { width: 30px; height: 30px; left: 20%; animation-delay: 4s; }
+  .bubble:nth-child(6) { width: 80px; height: 80px; left: 40%; animation-delay: 5s; }
+  .bubble:nth-child(7) { width: 20px; height: 20px; left: 75%; animation-delay: 6s; }
+  .bubble:nth-child(8) { width: 90px; height: 90px; left: 85%; animation-delay: 7s; }
+  .bubble:nth-child(9) { width: 50px; height: 50px; left: 5%; animation-delay: 8s; }
+  .bubble:nth-child(10) { width: 60px; height: 60px; left: 95%; animation-delay: 9s; }
+  
+  @keyframes rise {
+      to {
+          transform: translateY(-100vh); /* Move up out of view */
+          opacity: 0; /* Fade out */
+      }
+  }

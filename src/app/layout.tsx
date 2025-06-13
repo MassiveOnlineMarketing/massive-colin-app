@@ -73,7 +73,21 @@ export default function RootLayout({
         `}
       </Script>
 
-      <body className={`${inter.className} overflow-x-hidden `}>
+      <body className={`${inter.className} relative overflow-x-hidden `}>
+        <div className="screen-overlay-container">
+          <div className="bubble-container">
+            <span className="bubble"></span>
+            <span className="bubble"></span>
+            <span className="bubble"></span>
+            <span className="bubble"></span>
+            <span className="bubble"></span>
+            <span className="bubble"></span>
+            <span className="bubble"></span>
+            <span className="bubble"></span>
+            <span className="bubble"></span>
+            <span className="bubble"></span>
+          </div>
+        </div>
         <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-KFF97V7M"
           height="0" width="0" style={{ display: "none", visibility: "hidden" }}></iframe></noscript>
         {children}
