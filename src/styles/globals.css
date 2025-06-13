@@ -174,7 +174,7 @@
   .bubble:nth-child(3) { width: 50px; height: 50px; left: 70%; animation-delay: 2s; }
   .bubble:nth-child(4) { width: 70px; height: 70px; left: 50%; animation-delay: 3s; }
   .bubble:nth-child(5) { width: 30px; height: 30px; left: 20%; animation-delay: 4s; }
-  .bubble:nth-child(6) { width: 80px; height: 80px; left: 40%; animation-delay: 5s; }
+  .bubble:nth-child(6) { width: 80px; height: 80px; left: 30%; animation-delay: 5s; }
   .bubble:nth-child(7) { width: 20px; height: 20px; left: 75%; animation-delay: 6s; }
   .bubble:nth-child(8) { width: 90px; height: 90px; left: 85%; animation-delay: 7s; }
   .bubble:nth-child(9) { width: 50px; height: 50px; left: 5%; animation-delay: 8s; }
