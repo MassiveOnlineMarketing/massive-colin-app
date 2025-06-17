@@ -16,7 +16,7 @@ export default async function Home() {
 
 
   return (
-    <main className=" min-h-screen bg-gradient-to-b from-[#181C1A] to-[#0D0D0D]">
+    <main className=" min-h-screen">
       <div className=" w-full h-full text-[#FFFFFF]">
         <div className="max-w-[1428px] mx-auto px-[12px] md:px-[60px] lg:px-16">
 

@@ -73,20 +73,38 @@ export default function RootLayout({
         `}
       </Script>
 
-      <body className={`${inter.className} relative overflow-x-hidden `}>
+       <Script id="bubble-animation" strategy="afterInteractive">
+        {`
+          const bubbleContainer = document.getElementById("bubbleContainer");
+
+          function createBubble() {
+            const bubble = document.createElement("span");
+            bubble.classList.add("bubble");
+
+            const size = Math.floor(Math.random() * 60) + 15;
+            bubble.style.width = size + "px";
+            bubble.style.height = size + "px";
+
+            const left = Math.random() * 100;
+            bubble.style.left = left + "%";
+
+            const duration = Math.random() * 7 + 8;
+            bubble.style.animationDuration = duration + "s";
+
+            bubbleContainer.appendChild(bubble);
+
+            setTimeout(() => {
+              bubble.remove();
+            }, duration * 1000);
+          }
+
+          setInterval(createBubble, 2000);
+        `}
+      </Script>
+
+      <body className={`${inter.className} relative overflow-x-hidden bg-gradient-to-b from-[#181C1A] to-[#0D0D0D]`}>
         <div className="screen-overlay-container">
-          <div className="bubble-container">
-            <span className="bubble"></span>
-            <span className="bubble"></span>
-            <span className="bubble"></span>
-            <span className="bubble"></span>
-            <span className="bubble"></span>
-            <span className="bubble"></span>
-            <span className="bubble"></span>
-            <span className="bubble"></span>
-            <span className="bubble"></span>
-            <span className="bubble"></span>
-          </div>
+          <div className="bubble-container" id="bubbleContainer"></div>
         </div>
         <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-KFF97V7M"
           height="0" width="0" style={{ display: "none", visibility: "hidden" }}></iframe></noscript>
